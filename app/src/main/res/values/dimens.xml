@@ -2,4 +2,53 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Standard dimension in units-->
+    <dimen name="zero_size">0dp</dimen>
+    <dimen name="one_pixel">0.33dp</dimen>
+    <dimen name="one_dp">1dp</dimen>
+    <dimen name="half_quarter_unit">2dp</dimen>
+    <dimen name="quarter_unit">4dp</dimen>
+    <dimen name="one_and_half_quarter">6dp</dimen>
+    <dimen name="half_unit">8dp</dimen>
+    <dimen name="two_and_half_quarter">10dp</dimen>
+    <dimen name="three_quarter_unit">12dp</dimen>
+    <dimen name="three_and_half_quarter">14dp</dimen>
+    <dimen name="one_unit">16dp</dimen>
+    <dimen name="one_unit_and_half_quarter">18dp</dimen>
+    <dimen name="one_and_quarter_unit">20dp</dimen>
+    <dimen name="one_and_a_half_unit">24dp</dimen>
+    <dimen name="one_and_threequarter_unit">28dp</dimen>
+    <dimen name="two_units">32dp</dimen>
+    <dimen name="two_and_half_units">40dp</dimen>
+    <dimen name="three_units">48dp</dimen>
+    <dimen name="three_and_half_units">56dp</dimen>
+    <dimen name="four_units">64dp</dimen>
+    <dimen name="four_and_half_units">72dp</dimen>
+    <dimen name="five_units">80dp</dimen>
+    <dimen name="five_and_half_units">88dp</dimen>
+    <dimen name="six_units">96dp</dimen>
+    <dimen name="six_and_half_units">104dp</dimen>
+    <dimen name="seven_units">112dp</dimen>
+    <dimen name="eight_units">128dp</dimen>
+    <dimen name="nine_units">144dp</dimen>
+    <dimen name="ten_units">160dp</dimen>
+    <dimen name="eleven_units">176dp</dimen>
+    <dimen name="twelve_units">192dp</dimen>
+    <dimen name="twelve_and_half_units">200dp</dimen>
+    <dimen name="thirteen_units">208dp</dimen>
+    <dimen name="forteen_units">224dp</dimen>
+    <dimen name="forteen_and_half_units">232dp</dimen>
+    <dimen name="sixteen_units">256dp</dimen>
+    <dimen name="seventeen_units">272dp</dimen>
+    <dimen name="twenty_six_units">416dp</dimen>
+    <dimen name="forty_four_units">704dp</dimen>
+    <dimen name="twenty_two_units">352dp</dimen>
+    <dimen name="twenty_seven_units">432dp</dimen>
+    <dimen name="twenty_eight_units">448dp</dimen>
+    <dimen name="twenty_nine_units">464dp</dimen>
+    <dimen name="thirty_units">480dp</dimen>
+    <dimen name="fifty_four_units">864dp</dimen>
+    <dimen name="thirty_and_a_half_units">488dp</dimen>
+    <dimen name="B1">17dp</dimen>
 </resources>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Assestsmanagement</string>
+    <string name="title_login">Login</string>
+    <string name="login_username">User Name</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Login</string>
 </resources>
