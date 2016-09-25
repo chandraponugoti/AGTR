@@ -4,4 +4,8 @@
     <string name="login_username">User Name</string>
     <string name="login_password">Password</string>
     <string name="login_button">Login</string>
+    <string name="barcode">BR Scan</string>
+    <string name="nfc">NFC Scan</string>
+    <string name="qr">QR Scan</string>
+    <string name="updates">Updates</string>
 </resources>
