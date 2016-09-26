@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.niit.hackaton.agrt" >
+    package="app.niit.hackaton.agrt">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/asset_geo_tag"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="app.niit.hackaton.agrt.ui.LoginActivity"
             android:screenOrientation="sensor">
@@ -21,11 +21,19 @@
             android:name="app.niit.hackaton.agrt.ui.DashboardActivity"
             android:screenOrientation="sensor" />
 
+        <activity android:name="app.niit.hackaton.agrt.ui.AssetSubmitActivity" />
+        <activity android:name="app.niit.hackaton.agrt.ui.OrganisationSubmitActivity" />
+        <activity
+            android:name="app.niit.hackaton.agrt.ui.LatestUpdatesActivity"
+            android:label="@string/title_activity_latest_updates" />
+        <activity
+            android:name="app.niit.hackaton.agrt.ui.CreateProfileActivity"
+            android:label="@string/title_activity_create_profile"></activity>
+
         <provider
             android:name="app.niit.hackaton.agrt.provider.AgtrProvider"
             android:authorities="hack.agtr.provider"
             android:exported="false" />
-
     </application>
 
 </manifest>
