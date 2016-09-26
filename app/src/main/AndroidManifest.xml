@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="app.niit.hackaton.agrt.ui.LoginActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="sensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
         </activity>
         <activity
             android:name="app.niit.hackaton.agrt.ui.DashboardActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="sensor" />
 
         <provider
             android:name="app.niit.hackaton.agrt.provider.AgtrProvider"
