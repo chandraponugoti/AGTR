@@ -8,10 +8,17 @@ import app.niit.hackaton.agrt.R;
 
 public class AssetSubmitActivity extends FragmentActivity {
 
+    private AssetSubmitFragment mFragment;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new AssetSubmitFragment()).commit();
+        Bundle extras = getIntent().getExtras();
+
+        mFragment= new AssetSubmitFragment();
+        mFragment.setArguments(extras);
+
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,mFragment    ).commit();
     }
 }

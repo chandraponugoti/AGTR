@@ -1,96 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@android:color/white">
+              android:background="@android:color/white"
+              android:orientation="vertical"
+    >
 
-    <RelativeLayout
-        android:id="@+id/rl_login"
-        android:layout_width="@dimen/forty_four_units"
-        android:layout_height="@dimen/twenty_two_units"
-        android:layout_centerInParent="true">
 
         <TextView
             android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/two_units"
             android:layout_marginTop="@dimen/three_units"
             android:text="@string/title_login"
             android:textSize="28dp"
-            android:textStyle="bold"/>
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            />
 
-        <LinearLayout
-            android:layout_width="@dimen/twenty_seven_units"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/eight_units"
-            android:layout_marginTop="@dimen/six_units"
-            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/login_username"
+        android:layout_marginTop="@dimen/two_units"
+        android:layout_marginStart="@dimen/one_unit"
+        android:layout_marginEnd="@dimen/one_unit"
+        android:ems="10"
+        android:textColorHint="@android:color/darker_gray"
+        />
 
-                <TextView
-                    android:id="@+id/tv_username"
-                    android:layout_width="@dimen/zero_size"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="18dp"
-                    android:text="@string/login_username"/>
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/login_password"
+        android:layout_marginTop="@dimen/two_units"
+        android:layout_marginStart="@dimen/one_unit"
+        android:layout_marginEnd="@dimen/one_unit"
+        android:ems="10"
+        android:textColorHint="@android:color/darker_gray"
+        />
 
-                <EditText
-                    android:id="@+id/et_username"
-                    android:layout_width="@dimen/zero_size"
-                    android:layout_height="@dimen/three_units"
-                    android:layout_weight="2"
-                    android:hint="@string/login_username"
-                    android:inputType="textVisiblePassword"
-                    android:lines="1"
-                    android:textColorHint="@android:color/darker_gray"/>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/two_units"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_password"
-                    android:layout_width="@dimen/zero_size"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="18dp"
-                    android:text="@string/login_password"/>
-
-                <EditText
-                    android:id="@+id/et_password"
-                    android:layout_width="@dimen/zero_size"
-                    android:layout_height="@dimen/three_units"
-                    android:layout_weight="2"
-                    android:hint="@string/login_password"
-                    android:inputType="textPassword"
-                    android:lines="1"
-                    android:textColorHint="@android:color/darker_gray"/>
-
-            </LinearLayout>
-        </LinearLayout>
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="@dimen/eleven_units"
             android:layout_height="@dimen/three_units"
-            android:textSize="18dp"
-            android:layout_centerInParent="true"
             android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
             android:layout_marginBottom="@dimen/two_units"
             android:layout_marginTop="@dimen/three_units"
-            android:text="@string/login_button"/>
+            android:text="@string/login_button"
+            android:textSize="18dp"
+            android:layout_gravity="center_horizontal"
+            />
 
-    </RelativeLayout>
-
-</LinearLayout>
+    </LinearLayout>

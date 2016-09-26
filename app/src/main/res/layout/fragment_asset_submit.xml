@@ -41,8 +41,7 @@
             android:id="@+id/Scan_Code"
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
-            android:hint="@string/scan_code"
-            android:inputType="textPersonName"
+            android:enabled="false"
             android:layout_width="fill_parent">
         </EditText>
         <Spinner

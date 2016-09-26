@@ -7,8 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 
 import app.niit.hackaton.agrt.R;
+import app.niit.hackaton.agrt.util.Constants;
 
 
 /**
@@ -28,6 +31,10 @@ public class AssetSubmitFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private String mScanCode;
+    private View mRootView;
+    private EditText mScanCodeEditText;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -62,11 +69,21 @@ public class AssetSubmitFragment extends Fragment {
         }
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Bundle bundle = getArguments();
+        if (null != bundle) {
+            mScanCode = bundle.getString(Constants.SCAN_CODE);
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_asset_submit, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_asset_submit, null);
+
+        mScanCodeEditText = (EditText) mRootView.findViewById(R.id.Scan_Code);
+        mScanCodeEditText.setText(mScanCode);
+        return mRootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
