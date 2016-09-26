@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Assestsmanagement</string>
+    <string name="app_name">AGTR</string>
     <string name="title_login">Login</string>
     <string name="login_username">User Name</string>
     <string name="login_password">Password</string>

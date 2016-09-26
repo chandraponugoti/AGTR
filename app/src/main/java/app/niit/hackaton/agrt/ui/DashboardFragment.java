@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import agrt.dbs.assestsmanagement.R;
+import app.niit.hackaton.agrt.R;
 
 
 public class DashboardFragment extends Fragment {

@@ -4,7 +4,7 @@ package app.niit.hackaton.agrt.ui;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-import agrt.dbs.assestsmanagement.R;
+import app.niit.hackaton.agrt.R;
 
 public class DashboardActivity extends FragmentActivity {
     @Override
