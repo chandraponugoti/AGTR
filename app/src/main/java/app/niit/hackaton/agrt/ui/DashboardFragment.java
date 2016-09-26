@@ -1,4 +1,4 @@
-package agrt.dbs.assestsmanagement.ui;
+package app.niit.hackaton.agrt.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

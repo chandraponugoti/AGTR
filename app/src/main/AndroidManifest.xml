@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ui.LoginActivity"
+            android:name="app.niit.hackaton.agrt.ui.LoginActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +18,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.DashboardActivity"
+            android:name="app.niit.hackaton.agrt.ui.DashboardActivity"
             android:screenOrientation="landscape" />
 
         <provider
-            android:name=".provider.AgtrProvider"
+            android:name="app.niit.hackaton.agrt.provider.AgtrProvider"
             android:authorities="hack.agtr.provider"
             android:exported="false" />
 

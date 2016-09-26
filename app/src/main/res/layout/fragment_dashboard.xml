@@ -8,7 +8,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,7 +17,7 @@
                 style="@style/DashboardButton"
                 android:layout_margin="30dp"
                 android:drawableTop="@mipmap/latest_updates"
-                android:text="@string/updates" />
+                android:text="@string/updates"/>
             <Button
                 android:id="@+id/btn_qr_scan"
                 style="@style/DashboardButton"

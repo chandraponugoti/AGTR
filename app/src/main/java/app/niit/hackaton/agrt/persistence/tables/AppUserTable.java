@@ -1,10 +1,10 @@
-package agrt.dbs.assestsmanagement.persistence.tables;
+package app.niit.hackaton.agrt.persistence.tables;
 
 import android.net.Uri;
 
 import java.io.File;
 
-import agrt.dbs.assestsmanagement.provider.AgtrProvider;
+import app.niit.hackaton.agrt.provider.AgtrProvider;
 
 
 public class AppUserTable {

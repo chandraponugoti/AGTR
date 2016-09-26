@@ -1,4 +1,4 @@
-package agrt.dbs.assestsmanagement.provider;
+package app.niit.hackaton.agrt.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -10,9 +10,9 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import agrt.dbs.assestsmanagement.persistence.AgtrDbHelper;
-import agrt.dbs.assestsmanagement.persistence.tables.AppUserTable;
-import agrt.dbs.assestsmanagement.persistence.tables.OrganizationTable;
+import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
+import app.niit.hackaton.agrt.persistence.tables.AppUserTable;
+import app.niit.hackaton.agrt.persistence.tables.OrganizationTable;
 
 
 public class AgtrProvider extends ContentProvider {

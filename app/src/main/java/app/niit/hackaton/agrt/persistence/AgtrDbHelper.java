@@ -1,11 +1,11 @@
-package agrt.dbs.assestsmanagement.persistence;
+package app.niit.hackaton.agrt.persistence;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import agrt.dbs.assestsmanagement.persistence.tables.AppUserTable;
-import agrt.dbs.assestsmanagement.persistence.tables.OrganizationTable;
+import app.niit.hackaton.agrt.persistence.tables.AppUserTable;
+import app.niit.hackaton.agrt.persistence.tables.OrganizationTable;
 
 
 public class AgtrDbHelper extends SQLiteOpenHelper {
