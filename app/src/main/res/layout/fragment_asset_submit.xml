@@ -1,13 +1,71 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="app.niit.hackaton.agrt.ui.AssetSubmitFragment">
+    android:id="@+id/ScrollViewAsset"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/asset" />
-
-</FrameLayout>
+        <TextView
+            android:id="@+id/Asset_View_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/asset_details"
+            android:layout_gravity="center"
+            android:textSize="10pt">
+        </TextView>
+        <EditText
+            android:id="@+id/Asset_Name"
+            android:layout_height="wrap_content"
+            android:hint="@string/asset_name"
+            android:inputType="textPersonName"
+            android:layout_width="388dp">
+        </EditText>
+        <EditText
+            android:id="@+id/Asset_Description"
+            android:layout_height="wrap_content"
+            android:hint="@string/asset_description"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:layout_width="fill_parent">
+        </EditText>
+        <EditText
+            android:id="@+id/Scan_Code"
+            android:layout_height="wrap_content"
+            android:hint="@string/scan_code"
+            android:inputType="textPersonName"
+            android:layout_width="fill_parent">
+        </EditText>
+        <Spinner
+            android:id="@+id/Scan_Type"
+            android:layout_height="wrap_content"
+            android:prompt="@string/scan_type"
+            android:layout_width="fill_parent"
+            android:entries="@array/scantypelist">
+        </Spinner>
+        <EditText
+            android:id="@+id/Asset_Owner"
+            android:layout_height="wrap_content"
+            android:hint="@string/owner_name"
+            android:inputType="textPersonName"
+            android:layout_width="fill_parent">
+        </EditText>
+        <ToggleButton
+            android:text="@string/mark_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/In_Out"
+            android:textOff="@string/toggle_out"
+            android:textOn="@string/toggle_in" />
+        <Button
+            android:text="@string/submit_asset"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit_asset" />
+    </LinearLayout>
+</ScrollView>
