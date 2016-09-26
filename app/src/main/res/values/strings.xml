@@ -21,7 +21,7 @@
     <string name="asset_name">Asset Name</string>
     <string name="asset_description">Asset Description</string>
     <string name="scan_code">Scan Code</string>
-    <string name="scan_type">Scan Type</string>
+    <string name="scan_type">Select Scan Type</string>
     <string name="scan_type1">Barcode Scan</string>
     <string name="scan_type2">QR Scan</string>
     <string name="scan_type3">NFC Scan</string>
@@ -30,4 +30,12 @@
     <string name="toggle_in">IN</string>
     <string name="toggle_out">OUT</string>
     <string name="mark_status">MARK STATUS</string>
+    <string name="organisation_details">Organisation Details</string>
+    <string name="organisation_name">Organisation Name</string>
+    <string name="branch_name">Branch Name</string>
+    <string name="address">Address</string>
+    <string name="is_parent_organisation">Is Parent Organisation</string>
+    <string name="select_parent">Select Parent Organisation</string>
+    <string name="select_organisation">Select Organisation</string>
+    <string name="submit_organisation">Submit Organisation</string>
 </resources>
