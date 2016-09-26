@@ -13,6 +13,7 @@
 
         <TextView
             android:id="@+id/Asset_View_Title"
+            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/asset_details"
@@ -21,6 +22,7 @@
         </TextView>
         <EditText
             android:id="@+id/Asset_Name"
+            android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:hint="@string/asset_name"
             android:inputType="textPersonName"
@@ -28,6 +30,7 @@
         </EditText>
         <EditText
             android:id="@+id/Asset_Description"
+            android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:hint="@string/asset_description"
             android:inputType="textMultiLine"
@@ -36,6 +39,7 @@
         </EditText>
         <EditText
             android:id="@+id/Scan_Code"
+            android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:hint="@string/scan_code"
             android:inputType="textPersonName"
@@ -43,6 +47,7 @@
         </EditText>
         <Spinner
             android:id="@+id/Scan_Type"
+            android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:prompt="@string/scan_type"
             android:layout_width="fill_parent"
@@ -50,6 +55,7 @@
         </Spinner>
         <EditText
             android:id="@+id/Asset_Owner"
+            android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:hint="@string/owner_name"
             android:inputType="textPersonName"
@@ -57,12 +63,14 @@
         </EditText>
         <Spinner
             android:id="@+id/Organisation"
+            android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:prompt="@string/select_organisation"
             android:layout_width="fill_parent">
         </Spinner>
         <ToggleButton
             android:text="@string/mark_status"
+            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/In_Out"
@@ -70,6 +78,7 @@
             android:textOn="@string/toggle_in" />
         <Button
             android:text="@string/submit_asset"
+            android:layout_margin="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/submit_asset" />
