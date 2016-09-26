@@ -1,13 +1,63 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="app.niit.hackaton.agrt.ui.OrganisationSubmitFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/organisation" />
-
-</FrameLayout>
+    android:id="@+id/Scroll_View_Organisation"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent">
+        <TextView
+            android:id="@+id/Create_Organisation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/organisation_details"
+            android:textSize="10pt"
+            android:layout_gravity="center">
+        </TextView>
+        <EditText
+            android:id="@+id/Organistaion_Name"
+            android:layout_height="wrap_content"
+            android:hint="@string/organisation_name"
+            android:inputType="textPersonName"
+            android:layout_width="fill_parent">
+        </EditText>
+        <EditText
+            android:id="@+id/Branch_Name"
+            android:layout_height="wrap_content"
+            android:hint="@string/branch_name"
+            android:inputType="textPersonName"
+            android:layout_width="fill_parent">
+        </EditText>
+        <EditText
+            android:id="@+id/Address"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:layout_width="385dp">
+        </EditText>
+        <CheckBox
+            android:id="@+id/Is_Parent"
+            android:layout_height="wrap_content"
+            android:text="@string/is_parent_organisation"
+            android:layout_width="fill_parent"
+            android:checked="true"
+            android:duplicateParentState="true">
+        </CheckBox>
+        <Spinner
+            android:id="@+id/Parent_Organisation"
+            android:layout_height="wrap_content"
+            android:prompt="@string/select_parent"
+            android:layout_width="fill_parent">
+        </Spinner>
+        <Button
+            android:text="@string/submit_organisation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit_organisation"/>
+    </LinearLayout>
+</ScrollView>
