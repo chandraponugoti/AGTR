@@ -20,7 +20,6 @@
         <activity
             android:name="app.niit.hackaton.agrt.ui.DashboardActivity"
             android:screenOrientation="sensor" />
-
         <activity android:name="app.niit.hackaton.agrt.ui.AssetSubmitActivity" />
         <activity android:name="app.niit.hackaton.agrt.ui.OrganisationSubmitActivity" />
         <activity
@@ -28,7 +27,10 @@
             android:label="@string/title_activity_latest_updates" />
         <activity
             android:name="app.niit.hackaton.agrt.ui.CreateProfileActivity"
-            android:label="@string/title_activity_create_profile"></activity>
+            android:label="@string/title_activity_create_profile" />
+        <activity
+            android:name="app.niit.hackaton.agrt.ui.RoleActivity"
+            android:label="@string/title_activity_role"></activity>
 
         <provider
             android:name="app.niit.hackaton.agrt.provider.AgtrProvider"

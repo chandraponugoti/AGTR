@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Scroll_View_Organisation"
-    android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:scrollbars="vertical">
     <LinearLayout
@@ -42,7 +42,7 @@
             android:hint="@string/address"
             android:inputType="textMultiLine"
             android:lines="6"
-            android:layout_width="385dp">
+            android:layout_width="fill_parent">
         </EditText>
         <CheckBox
             android:id="@+id/Is_Parent"

@@ -4,11 +4,11 @@
     <string name="login_username">User Name</string>
     <string name="login_password">Password</string>
     <string name="login_button">Login</string>
-    <string name="barcode">Barcode Scan</string>
+    <string name="qr_barcode">QR/Barcode Scan</string>
     <string name="nfc">NFC Scan</string>
-    <string name="qr">QR Scan</string>
     <string name="updates">Updates</string>
-    <string name="organisation">Organisations</string>
+    <string name="organisation">Organisation</string>
+    <string name="role">Role</string>
     <string name="profile">Profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -45,4 +45,5 @@
     <string name="mobile_number">Mobile Number</string>
     <string name="select_role">Select Role</string>
     <string name="submit_profile">Submit Profile</string>
+    <string name="title_activity_role">RoleActivity</string>
 </resources>

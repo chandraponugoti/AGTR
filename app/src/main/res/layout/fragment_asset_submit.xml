@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollViewAsset"
-    android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:scrollbars="vertical">
     <LinearLayout
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/asset_name"
             android:inputType="textPersonName"
-            android:layout_width="388dp">
+            android:layout_width="fill_parent">
         </EditText>
         <EditText
             android:id="@+id/Asset_Description"

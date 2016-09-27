@@ -23,14 +23,14 @@
                 android:drawableTop="@mipmap/latest_updates"
                 android:text="@string/updates"/>
             <Button
-                android:id="@+id/btn_qr_scan"
+                android:id="@+id/btn_qr_barcode_scan"
                 style="@style/DashboardButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:layout_margin="10dp"
-                android:drawableTop="@mipmap/qrcode_scanning"
-                android:text="@string/qr"/>
+                android:drawableTop="@mipmap/barcode_qr_scanner"
+                android:text="@string/qr_barcode"/>
         </LinearLayout>
     </LinearLayout>
         <LinearLayout
@@ -44,15 +44,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <Button
-                    android:id="@+id/btn_barcode_scan"
-                    style="@style/DashboardButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:layout_margin="10dp"
-                    android:drawableTop="@mipmap/barcode_scanner"
-                    android:text="@string/barcode"/>
-                <Button
                     android:id="@+id/btn_nfc_scan"
                     style="@style/DashboardButton"
                     android:layout_width="0dp"
@@ -61,6 +52,15 @@
                     android:layout_margin="10dp"
                     android:drawableTop="@mipmap/nfc_scanner"
                     android:text="@string/nfc"/>
+                <Button
+                    android:id="@+id/btn_organisations"
+                    style="@style/DashboardButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_margin="10dp"
+                    android:drawableTop="@mipmap/organisation"
+                    android:text="@string/organisation"/>
             </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -74,14 +74,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/btn_organisations"
+                android:id="@+id/btn_role"
                 style="@style/DashboardButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:layout_margin="10dp"
-                android:drawableTop="@mipmap/organisation"
-                android:text="@string/organisation"/>
+                android:drawableTop="@mipmap/role"
+                android:text="@string/role"/>
             <Button
                 android:id="@+id/btn_profile"
                 style="@style/DashboardButton"

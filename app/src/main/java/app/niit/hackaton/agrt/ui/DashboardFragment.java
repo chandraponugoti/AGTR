@@ -21,8 +21,8 @@ public class DashboardFragment extends Fragment {
 
     private Button mLatestUpdates;
     private Button mAssetNfcScan;
-    private Button mAssetBarcodeScan;
-    private Button mAssetQrScan;
+    private Button mAssetQrAndBarcodeScan;
+    private Button mCreateRole;
     private Button mCreateOrginisation;
     private Button mCreateProfile;
     private static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
@@ -33,8 +33,8 @@ public class DashboardFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_dashboard,null);
         mLatestUpdates = (Button)rootView.findViewById(R.id.btn_asset_updates);
         mAssetNfcScan = (Button)rootView.findViewById(R.id.btn_nfc_scan);
-        mAssetBarcodeScan = (Button)rootView.findViewById(R.id.btn_barcode_scan);
-        mAssetQrScan = (Button)rootView.findViewById(R.id.btn_qr_scan);
+        mAssetQrAndBarcodeScan = (Button)rootView.findViewById(R.id.btn_qr_barcode_scan);
+        mCreateRole = (Button)rootView.findViewById(R.id.btn_role);
         mCreateOrginisation = (Button)rootView.findViewById(R.id.btn_organisations);
         mCreateProfile = (Button)rootView.findViewById(R.id.btn_profile);
         return rootView;
@@ -62,7 +62,7 @@ public class DashboardFragment extends Fragment {
                 }
         );
 
-        mAssetBarcodeScan.setOnClickListener(
+        mAssetQrAndBarcodeScan.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -71,11 +71,11 @@ public class DashboardFragment extends Fragment {
                 }
         );
 
-        mAssetQrScan.setOnClickListener(
+        mCreateRole.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        doRegisterAssetThroughQr();
+                        doCreateRole();
                     }
                 }
         );
@@ -113,8 +113,8 @@ public class DashboardFragment extends Fragment {
         scanIntegrator.initiateScan();
     }
 
-    private void doRegisterAssetThroughQr() {
-        startActivity(new Intent(getActivity().getApplicationContext(), AssetSubmitActivity.class));
+    private void doCreateRole() {
+        startActivity(new Intent(getActivity().getApplicationContext(), RoleActivity.class));
     }
 
     private void doCreateOrganisation() {
