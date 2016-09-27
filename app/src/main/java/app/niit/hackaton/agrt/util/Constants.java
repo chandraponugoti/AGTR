@@ -21,4 +21,5 @@ package app.niit.hackaton.agrt.util;
  */
 public class Constants {
     public static final String SCAN_CODE= "scan_code";
+    public static final String SCAN_FORMAT= "scan_format";
 }

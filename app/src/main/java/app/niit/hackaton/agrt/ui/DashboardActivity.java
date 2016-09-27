@@ -36,7 +36,8 @@ public class DashboardActivity extends FragmentActivity {
             toast.show();
 
             Intent submitIntent = new Intent(this.getApplicationContext(),AssetSubmitActivity.class);
-            submitIntent.putExtra(Constants.SCAN_CODE,scanFormat);
+            submitIntent.putExtra(Constants.SCAN_CODE,scanContent);
+            submitIntent.putExtra(Constants.SCAN_FORMAT,scanFormat);
             startActivity(submitIntent);
         } else {
             Toast toast = Toast.makeText(

@@ -1,9 +1,12 @@
 package app.niit.hackaton.agrt.persistence.tables;
 
+import android.content.ContentValues;
 import android.net.Uri;
 
 import java.io.File;
 
+import app.niit.hackaton.agrt.dto.Asset;
+import app.niit.hackaton.agrt.dto.Organisation;
 import app.niit.hackaton.agrt.provider.AgtrProvider;
 
 
@@ -36,4 +39,14 @@ public class OrganizationTable {
             BRANCH,
             ADDRESS,
     };
+
+    public static ContentValues createValuesFromObject(final Organisation v) {
+        final ContentValues cv = new ContentValues();
+        cv.put(ID, v.getId());
+        cv.put(PARENT_ORG_ID, v.getParentId());
+        cv.put(ORG_NAME, v.getOrganisationName());
+        cv.put(BRANCH, v.getBrance());
+        cv.put(ADDRESS, v.getAddress());
+        return cv;
+    }
 }

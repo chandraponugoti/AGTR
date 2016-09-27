@@ -83,6 +83,7 @@ public class AssetSubmitFragment extends Fragment {
 
         mScanCodeEditText = (EditText) mRootView.findViewById(R.id.Scan_Code);
         mScanCodeEditText.setText(mScanCode);
+        mScanCodeEditText.setEnabled(true);
         return mRootView;
     }
 
