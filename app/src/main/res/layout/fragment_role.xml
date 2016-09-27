@@ -1,13 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="app.niit.hackaton.agrt.ui.RoleFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+    android:id="@+id/Scroll_View_Role"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent">
+        <TextView
+            android:id="@+id/Create_Role"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/role_details"
+            android:textSize="10pt"
+            android:layout_gravity="center">
+        </TextView>
+        <EditText
+            android:id="@+id/Role_Name"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/role_name"
+            android:inputType="textPersonName"
+            android:layout_width="fill_parent">
+        </EditText>
+        <Spinner
+            android:id="@+id/Organisation"
+            android:layout_height="wrap_content"
+            android:prompt="@string/select_organisation"
+            android:layout_width="fill_parent">
+        </Spinner>
+        <Button
+            android:text="@string/submit_role"
+            android:layout_margin="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit_role"/>
+    </LinearLayout>
+</ScrollView>
