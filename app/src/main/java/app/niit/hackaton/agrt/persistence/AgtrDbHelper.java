@@ -2,9 +2,13 @@ package app.niit.hackaton.agrt.persistence;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
+
+import java.util.ArrayList;
+import java.util.logging.Level;
 
 import app.niit.hackaton.agrt.dto.Asset;
 import app.niit.hackaton.agrt.dto.AssetRegister;
@@ -41,6 +45,9 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         //Added encode for special characters like umlaut etc
         db.execSQL(OrganizationTable.CREATE_TABLE);
         db.execSQL(AppUserTable.CREATE_TABLE);
+        db.execSQL(RoleTable.CREATE_TABLE);
+        db.execSQL(AssetTable.CREATE_TABLE);
+        db.execSQL(AssetRegisteryTable.CREATE_TABLE);
     }
 
     @Override
@@ -52,13 +59,14 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
      *
      * @param o {@link app.niit.hackaton.agrt.dto.Organisation}
      */
-    public void saveOrganisation(final Organisation o) {
+    public long saveOrganisation(final Organisation o) {
         final SQLiteDatabase db = getReadableDatabase();
         final ContentValues cv = OrganizationTable.createValuesFromObject(o);
-        db.insert(OrganizationTable.TABLE,null,cv);
+        long row = db.insert(OrganizationTable.TABLE,null,cv);
         if (db.isOpen()) {
             db.close();
         }
+        return row;
     }
 
     /**
@@ -115,5 +123,187 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         if (db.isOpen()) {
             db.close();
         }
+    }
+
+    public Organisation getOrganisationIdByName(String orgName){
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                OrganizationTable.SELECT_ALL + " WHERE  " + OrganizationTable.ORG_NAME + " = '" + orgName + "'",null
+        );
+        Organisation lf = null;
+        if (0 < cursor.getCount()) {
+            cursor.moveToFirst();
+            lf = OrganizationTable.createObjectFromCursor(cursor);
+        }
+        cursor.close();
+        return lf;
+    }
+
+    public ArrayList<Organisation> getOrganisationList() {
+        final ArrayList<Organisation> assets = new ArrayList<Organisation>();
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                OrganizationTable.SELECT_ALL,null
+        );
+        if(cursor!=null && cursor.getCount()>0) {
+            cursor.moveToFirst();
+            do {
+                final Organisation v = OrganizationTable.createObjectFromCursor(cursor);
+                if ((null != v) && v.getParentId() == 0) {
+                    assets.add(v);
+                }
+            } while (cursor.moveToNext());
+        }
+        return assets;
+    }
+
+    /**
+     * Get Asset-List by Organisation
+     *
+     * @param o Organisation
+     * @return ArrayList<AssetRegister>
+     */
+   /* public ArrayList<AssetRegister> getAssetList(final Organisation o) {
+        final ArrayList<AssetRegister> assets = new ArrayList<AssetRegister>();
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                AssetRegisteryTable.SELECT_ALL + " WHERE  " + AssetRegisteryTable.REGISTER_DATE + " ASC",null
+        );
+        if(cursor!=null && cursor.getCount()>0) {
+            cursor.moveToFirst();
+            do {
+                final AssetRegister v = AssetRegisteryTable.createObjectFromCursor(cursor);
+                if ((null != v) && !v.getId().isEmpty() && !v.getUic().isEmpty()) {
+                    arrFzg.add(v);
+                }
+            } while (cursor.moveToNext());
+        }
+        return arrFzg;
+    }*/
+
+    /**
+     * Get Asset by id
+     *
+     * @param i id
+     * @return ArrayList<AssetRegister>
+     */
+   /* public Asset getAsset(final int id) {
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                AssetTable.SELECT_ALL + " WHERE  " + AssetTable.ID + "=" + id,null
+        );
+        if(cursor!=null && cursor.getCount()>0) {
+            cursor.moveToFirst();
+            do {
+                final AssetTable v = AssetTable.createObjectFromCursor(cursor);
+                if ((null != v) && !v.getId().isEmpty() && !v.getUic().isEmpty()) {
+                    arrFzg.add(v);
+                }
+            } while (cursor.moveToNext());
+        }
+        return arrFzg;
+    }*/
+
+    /**
+     * Get string-value from cursor
+     *
+     * @param cursor:Cursor
+     * @param fieldIndex:String
+     * @param defaultValue:String
+     * @return String
+     */
+    public static String getString(final Cursor cursor,final String fieldIndex,final String defaultValue) {
+        try {
+            final int index = cursor.getColumnIndex(fieldIndex);
+            final String s = cursor.getString(index);
+            if (null != s) {
+                return s;
+            }
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Get boolean-value from cursor
+     *
+     * @param cursor:Cursor
+     * @param fieldIndex:String
+     * @return String
+     */
+    public static boolean getBoolean(final Cursor cursor,final String fieldIndex) {
+        try {
+            final int index = cursor.getColumnIndex(fieldIndex);
+            final int i = cursor.getInt(index);
+            return 1 == i;
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static int convertToBoolean(final boolean value) {
+        if (value) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * Get char-value from cursor
+     *
+     * @param cursor:Cursor
+     * @param fieldIndex:String
+     * @return char
+     */
+    public static char getChar(final Cursor cursor,final String fieldIndex) {
+        try {
+            final int index = cursor.getColumnIndex(fieldIndex);
+            return cursor.getString(index).charAt(0);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+        return '?';
+    }
+
+    /**
+     * Get int-value from cursor
+     *
+     * @param cursor:Cursor
+     * @param fieldIndex:String
+     * @return int
+     */
+    public static int getInt(final Cursor cursor,final String fieldIndex) {
+        try {
+            final int index = cursor.getColumnIndex(fieldIndex);
+            return cursor.getInt(index);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    /**
+     * Get long-value from cursor
+     *
+     * @param cursor:Cursor
+     * @param fieldIndex:String
+     * @param defaultValue:long
+     * @return long
+     */
+    public static long getLong(final Cursor cursor,final String fieldIndex,final long defaultValue) {
+        try {
+            final int index = cursor.getColumnIndex(fieldIndex);
+            return cursor.getLong(index);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+        return defaultValue;
     }
 }

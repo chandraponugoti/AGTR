@@ -41,7 +41,6 @@ public class RoleTable {
 
     public static ContentValues createValuesFromObject(final Role v) {
         final ContentValues cv = new ContentValues();
-        cv.put(ID, v.getId());
         cv.put(ROLE_NAME, v.getRoleName());
         cv.put(ORG_ID,  v.getOrg().getId());
         return cv;

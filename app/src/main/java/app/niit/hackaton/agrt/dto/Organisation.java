@@ -5,29 +5,29 @@ package app.niit.hackaton.agrt.dto;
  */
 
 public class Organisation {
-    private Long id;
+    private int id;
 
-    private String parentId = "";
+    private int parentId;
 
     private String organisationName = "";
 
-    private String brance = "";
+    private String branch = "";
 
     private String address = "";
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getParentId() {
+    public int getParentId() {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(int parentId) {
         this.parentId = parentId;
     }
 
@@ -39,12 +39,12 @@ public class Organisation {
         this.organisationName = organisationName;
     }
 
-    public String getBrance() {
-        return brance;
+    public String getBranch() {
+        return branch;
     }
 
-    public void setBrance(String brance) {
-        this.brance = brance;
+    public void setBranch(String branch) {
+        this.branch = branch;
     }
 
     public String getAddress() {

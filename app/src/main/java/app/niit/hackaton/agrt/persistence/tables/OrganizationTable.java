@@ -1,12 +1,14 @@
 package app.niit.hackaton.agrt.persistence.tables;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 
 import java.io.File;
 
 import app.niit.hackaton.agrt.dto.Asset;
 import app.niit.hackaton.agrt.dto.Organisation;
+import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
 import app.niit.hackaton.agrt.provider.AgtrProvider;
 
 
@@ -31,6 +33,8 @@ public class OrganizationTable {
             + BRANCH + " TEXT NOT NULL,"
             + ADDRESS + " TEXT NOT NULL)";
 
+    public static final String SELECT_ALL = "SELECT * FROM " + TABLE;
+
     //OrganizationTable table projection
     public static final String[] PROJECTION = new String[]{
             ID,
@@ -42,11 +46,25 @@ public class OrganizationTable {
 
     public static ContentValues createValuesFromObject(final Organisation v) {
         final ContentValues cv = new ContentValues();
-        cv.put(ID, v.getId());
         cv.put(PARENT_ORG_ID, v.getParentId());
         cv.put(ORG_NAME, v.getOrganisationName());
-        cv.put(BRANCH, v.getBrance());
+        cv.put(BRANCH, v.getBranch());
         cv.put(ADDRESS, v.getAddress());
         return cv;
+    }
+
+    public static Organisation createObjectFromCursor(final Cursor cursor) {
+        Organisation org = new Organisation();
+        final int id = AgtrDbHelper.getInt(cursor, ID);
+        final String name = AgtrDbHelper.getString(cursor, ORG_NAME, "");
+        final String branch = AgtrDbHelper.getString(cursor, BRANCH, "");
+        final String address = AgtrDbHelper.getString(cursor, ADDRESS, "");
+        final int parent = AgtrDbHelper.getInt(cursor, PARENT_ORG_ID);
+        org.setOrganisationName(name);
+        org.setBranch(branch);
+        org.setAddress(address);
+        org.setParentId(parent);
+        org.setId(id);
+        return org;
     }
 }

@@ -1,14 +1,30 @@
 package app.niit.hackaton.agrt.ui;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import app.niit.hackaton.agrt.R;
+import app.niit.hackaton.agrt.dto.Organisation;
+import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
+import app.niit.hackaton.agrt.persistence.tables.OrganizationTable;
 
 
 /**
@@ -19,7 +35,7 @@ import app.niit.hackaton.agrt.R;
  * Use the {@link OrganisationSubmitFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OrganisationSubmitFragment extends Fragment {
+public class OrganisationSubmitFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,11 +45,25 @@ public class OrganisationSubmitFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private EditText mOrganisationName;
+    private EditText mBranch;
+    private EditText mAddress;
+    private Spinner mParent;
+    private CheckBox mIsParent;
+    private Button mSubmit;
+    private AgtrDbHelper dbHelper;
+
     //private OnFragmentInteractionListener mListener;
 
     public OrganisationSubmitFragment() {
         // Required empty public constructor
     }
+
+    /** Items entered by the user is stored in this ArrayList variable */
+    ArrayList<String> list = new ArrayList<String>();
+
+    /** Declaring an ArrayAdapter to set items to ListView */
+    ArrayAdapter<String> adapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -66,8 +96,66 @@ public class OrganisationSubmitFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_organisation_submit, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_organisation_submit, container, false);
+        dbHelper = new AgtrDbHelper(this.getContext());
+        mOrganisationName = (EditText)rootView.findViewById(R.id.Organistaion_Name);
+        mBranch = (EditText)rootView.findViewById(R.id.Branch_Name);
+        mAddress = (EditText)rootView.findViewById(R.id.Address);
+        mParent = (Spinner) rootView.findViewById(R.id.Parent_Organisation);
+        mIsParent = (CheckBox)rootView.findViewById(R.id.Is_Parent);
+        mSubmit = (Button)rootView.findViewById(R.id.submit_organisation);
+        List<Organisation> orgList = dbHelper.getOrganisationList();
+        for(Organisation org : orgList){
+            list.add(org.getOrganisationName());
+        }
+        /** Defining the ArrayAdapter to set items to Spinner Widget */
+        adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, list);
+        /** Setting the adapter to the ListView */
+        mParent.setAdapter(adapter);
+
+        /** Adding radio buttons for the spinner items */
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mParent.setVisibility(View.GONE);
+        mSubmit.setOnClickListener(this);
+        mIsParent.setOnClickListener(this);
+        return rootView;
     }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.Is_Parent:
+                if (checked)
+                    mParent.setVisibility(view.GONE);
+                else
+                    mParent.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    private void doSubmit() {
+        Organisation org = new Organisation();
+        org.setOrganisationName(mOrganisationName.getText().toString());
+        org.setAddress(mAddress.getText().toString());
+        org.setBranch(mBranch.getText().toString());
+        if(mIsParent.isChecked()) {
+            org.setParentId(0);
+        }else {
+            Organisation organisation = dbHelper.getOrganisationIdByName(mParent.getSelectedItem().toString());
+            org.setParentId(organisation.getId());
+        }
+        long row = dbHelper.saveOrganisation(org);
+        if(row != -1){
+            Toast.makeText(this.getContext(), "Success", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this.getContext(), "failure", Toast.LENGTH_SHORT).show();
+        }
+        startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
+        getActivity().finish();
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -91,6 +179,15 @@ public class OrganisationSubmitFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         //mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == mSubmit) {
+            doSubmit();
+        }else if(v == mIsParent){
+            onCheckboxClicked(v);
+        }
     }
 
     /**

@@ -50,7 +50,8 @@
             android:layout_height="wrap_content"
             android:text="@string/is_parent_organisation"
             android:layout_width="fill_parent"
-            android:checked="true"
+            android:checked="false"
+            android:onClick="onCheckboxClicked"
             android:duplicateParentState="true">
         </CheckBox>
         <Spinner

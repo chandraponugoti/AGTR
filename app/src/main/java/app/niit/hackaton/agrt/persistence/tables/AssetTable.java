@@ -5,19 +5,21 @@ package app.niit.hackaton.agrt.persistence.tables;
  */
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 
 import java.io.File;
 
 import app.niit.hackaton.agrt.dto.Asset;
 import app.niit.hackaton.agrt.dto.AssetRegister;
+import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
 import app.niit.hackaton.agrt.provider.AgtrProvider;
 
 
 public class AssetTable {
     //AssetTable table database columns keys
     //The ID column must named only _id. Then only CursorAdapter will work
-    private static final String ID = "_id";
+    public static final String ID = "_id";
     public static final String ASSET_NAME   = "ASSET_NAME ";
     public static final String ASSET_DESCRIPTION   = "ASSET_DESCRIPTION";
     public static final String SCAN_CODE  = "SCAN_CODE";
@@ -40,6 +42,8 @@ public class AssetTable {
             + ASSET_OWNER  + " TEXT,"
             + ORG_ID  + " INTEGER)";
 
+    public static final String SELECT_ALL = "SELECT * FROM " + TABLE;
+
     //AssetTable table projection
     public static final String[] PROJECTION = new String[]{
             ID,
@@ -53,7 +57,6 @@ public class AssetTable {
 
     public static ContentValues createValuesFromObject(final Asset v) {
         final ContentValues cv = new ContentValues();
-        cv.put(ID, v.getId());
         cv.put(ASSET_NAME, v.getAssetName());
         cv.put(ASSET_DESCRIPTION, v.getAssetDescription());
         cv.put(SCAN_CODE, v.getScanCode());
@@ -62,4 +65,19 @@ public class AssetTable {
         cv.put(ORG_ID, v.getOrg().getId());
         return cv;
     }
+
+    /*public static Asset createObjectFromCursor(final Cursor cursor) {
+        final String id = AgtrDbHelper.getInt(cursor, ID);
+        final int assetId = AgtrDbHelper.getInt(cursor, ASSET_NAME);
+        final String status = AgtrDbHelper.getString(cursor,ASSET_DESCRIPTION, "");
+        final long registerDate = AgtrDbHelper.getLong(cursor,SCAN_CODE,0);
+        final String empName = AgtrDbHelper.getString(cursor,SCAN_TYPE,"");
+        final long longitude = AgtrDbHelper.getLong(cursor,ASSET_OWNER,0);
+        final long latitude = AgtrDbHelper.getLong(cursor,ORG_ID,0);
+        final Asset asset = new Asset();
+        asset.setId(id);
+        asset.setConstructionSeries(cons);
+        asset.setSiteId(siteid);
+        return
+    }*/
 }
