@@ -6,7 +6,6 @@ import android.net.Uri;
 
 import java.io.File;
 
-import app.niit.hackaton.agrt.dto.Asset;
 import app.niit.hackaton.agrt.dto.Organisation;
 import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
 import app.niit.hackaton.agrt.provider.AgtrProvider;
@@ -15,7 +14,7 @@ import app.niit.hackaton.agrt.provider.AgtrProvider;
 public class OrganizationTable {
     //OrganizationTable table database columns keys
     //The ID column must named only _id. Then only CursorAdapter will work
-    private static final String ID = "_id";
+    public static final String ID = "_id";
     public static final String PARENT_ORG_ID  = "PARENT_ORG_ID";
     public static final String ORG_NAME  = "ORG_NAME";
     public static final String BRANCH = "BRANCH";

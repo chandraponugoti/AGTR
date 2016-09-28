@@ -1,12 +1,9 @@
 package app.niit.hackaton.agrt.ui;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +15,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import app.niit.hackaton.agrt.AgtrApplication;
 import app.niit.hackaton.agrt.R;
 import app.niit.hackaton.agrt.dto.Organisation;
-import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
-import app.niit.hackaton.agrt.persistence.tables.OrganizationTable;
+import app.niit.hackaton.agrt.util.Util;
 
 
 /**
@@ -40,30 +34,25 @@ public class OrganisationSubmitFragment extends Fragment implements View.OnClick
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    /**
+     * Declaring an ArrayAdapter to set items to ListView
+     */
+    ArrayAdapter<String> adapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     private EditText mOrganisationName;
     private EditText mBranch;
     private EditText mAddress;
     private Spinner mParent;
     private CheckBox mIsParent;
-    private Button mSubmit;
-    private AgtrDbHelper dbHelper;
 
     //private OnFragmentInteractionListener mListener;
+    private Button mSubmit;
 
     public OrganisationSubmitFragment() {
         // Required empty public constructor
     }
-
-    /** Items entered by the user is stored in this ArrayList variable */
-    ArrayList<String> list = new ArrayList<String>();
-
-    /** Declaring an ArrayAdapter to set items to ListView */
-    ArrayAdapter<String> adapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -97,19 +86,14 @@ public class OrganisationSubmitFragment extends Fragment implements View.OnClick
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_organisation_submit, container, false);
-        dbHelper = new AgtrDbHelper(this.getContext());
         mOrganisationName = (EditText)rootView.findViewById(R.id.Organistaion_Name);
         mBranch = (EditText)rootView.findViewById(R.id.Branch_Name);
         mAddress = (EditText)rootView.findViewById(R.id.Address);
         mParent = (Spinner) rootView.findViewById(R.id.Parent_Organisation);
         mIsParent = (CheckBox)rootView.findViewById(R.id.Is_Parent);
         mSubmit = (Button)rootView.findViewById(R.id.submit_organisation);
-        List<Organisation> orgList = dbHelper.getOrganisationList();
-        for(Organisation org : orgList){
-            list.add(org.getOrganisationName());
-        }
         /** Defining the ArrayAdapter to set items to Spinner Widget */
-        adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, list);
+        adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, Util.getParentOrganisationList());
         /** Setting the adapter to the ListView */
         mParent.setAdapter(adapter);
 
@@ -128,7 +112,7 @@ public class OrganisationSubmitFragment extends Fragment implements View.OnClick
         switch(view.getId()) {
             case R.id.Is_Parent:
                 if (checked)
-                    mParent.setVisibility(view.GONE);
+                    mParent.setVisibility(View.GONE);
                 else
                     mParent.setVisibility(View.VISIBLE);
                 break;
@@ -142,11 +126,11 @@ public class OrganisationSubmitFragment extends Fragment implements View.OnClick
         org.setBranch(mBranch.getText().toString());
         if(mIsParent.isChecked()) {
             org.setParentId(0);
-        }else {
-            Organisation organisation = dbHelper.getOrganisationIdByName(mParent.getSelectedItem().toString());
+        } else {
+            Organisation organisation = AgtrApplication.getDbHelper().getOrganisationIdByName(mParent.getSelectedItem().toString());
             org.setParentId(organisation.getId());
         }
-        long row = dbHelper.saveOrganisation(org);
+        long row = AgtrApplication.getDbHelper().saveOrganisation(org);
         if(row != -1){
             Toast.makeText(this.getContext(), "Success", Toast.LENGTH_SHORT).show();
         }else{

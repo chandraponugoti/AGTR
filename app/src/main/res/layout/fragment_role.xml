@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/Scroll_View_Role"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:scrollbars="vertical">
     <LinearLayout
         android:layout_width="fill_parent"
-        android:orientation="vertical"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
         <TextView
             android:id="@+id/Create_Role"
-            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:text="@string/role_details"
-            android:textSize="10pt"
-            android:layout_gravity="center">
+            android:textSize="10pt">
         </TextView>
         <EditText
             android:id="@+id/Role_Name"
-            android:layout_margin="5dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/role_name"
-            android:inputType="textPersonName"
-            android:layout_width="fill_parent">
-        </EditText>
-        <Spinner
-            android:id="@+id/Organisation"
-            android:layout_height="wrap_content"
-            android:prompt="@string/select_organisation"
-            android:layout_width="fill_parent">
-        </Spinner>
-        <Button
-            android:text="@string/submit_role"
-            android:layout_margin="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/submit_role"/>
+            android:layout_margin="5dp"
+            android:hint="@string/role_name"
+            android:inputType="textPersonName">
+        </EditText>
+        <Spinner
+            android:id="@+id/Role_Organisation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/select_organisation">
+        </Spinner>
+        <Button
+            android:id="@+id/submit_role"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/submit_role" />
     </LinearLayout>
 </ScrollView>
