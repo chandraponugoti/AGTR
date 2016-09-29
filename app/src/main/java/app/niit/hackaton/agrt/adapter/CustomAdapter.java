@@ -13,7 +13,6 @@ import java.util.List;
 
 import app.niit.hackaton.agrt.R;
 import app.niit.hackaton.agrt.dto.AssetRegister;
-import app.niit.hackaton.agrt.ui.LatestUpdatesFragment;
 
 /**
  * Created by ChandraSekharPonugot on 29-09-2016.
@@ -23,17 +22,13 @@ public class CustomAdapter extends BaseAdapter {
     private static LayoutInflater inflater = null;
     List<AssetRegister> result;
     Context context;
-    LatestUpdatesFragment fragment;
-    int[] imageId;
 
-    public CustomAdapter(LatestUpdatesFragment fragment, List<AssetRegister> assets) {
+    public CustomAdapter(Context context, List<AssetRegister> assets) {
         // TODO Auto-generated constructor stub
         result = assets;
-        context = fragment.getContext();
-        fragment = fragment;
+        this.context = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
@@ -63,11 +58,12 @@ public class CustomAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 AssetRegister item = result.get(position);
-                AlertDialog alertDialog = new AlertDialog.Builder(fragment.getActivity()).create();
+                AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                 // Setting Dialog Title
                 alertDialog.setTitle("Asset Info");
                 StringBuffer str = new StringBuffer();
                 str.append("ASSET OWNER:" + item.getAsset().getAssetOwner());
+                str.append(System.getProperty("line.separator"));
                 str.append("TAGGED LOCATION:" + item.getLocation());
                 // Setting Dialog Message
                 alertDialog.setMessage(str);

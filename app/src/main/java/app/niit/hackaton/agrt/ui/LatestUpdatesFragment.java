@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ import app.niit.hackaton.agrt.util.Util;
  * Use the {@link LatestUpdatesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LatestUpdatesFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class LatestUpdatesFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,8 +77,7 @@ public class LatestUpdatesFragment extends Fragment implements AdapterView.OnIte
         // Inflate the layout for this fragment
         View viewRoot = inflater.inflate(R.layout.fragment_latest_updates, container, false);
         mAssetView = (ListView) viewRoot.findViewById(R.id.assets);
-        mAssetView.setAdapter(new CustomAdapter(this, getAssets()));
-        mAssetView.setOnItemClickListener(this);
+        mAssetView.setAdapter(new CustomAdapter(this.getContext(), getAssets()));
         return viewRoot;
     }
 
@@ -137,28 +135,6 @@ public class LatestUpdatesFragment extends Fragment implements AdapterView.OnIte
         //mListener = null;
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        int itemPosition = position;
-        /*AssetRegister  itemValue    = (AssetRegister) mAssetView.getItemAtPosition(position);
-        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-        // Setting Dialog Title
-        alertDialog.setTitle("Asset Info");
-        StringBuffer str = new StringBuffer();
-        str.append("ASSET OWNER:" + itemValue.getAsset().getAssetOwner());
-        str.append("TAGGED LOCATION:" + itemValue.getLocation());
-        // Setting Dialog Message
-        alertDialog.setMessage(str);
-        // Setting Icon to Dialog
-        alertDialog.setIcon(R.mipmap.asset_geo_tag);
-        // Setting OK Button
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        // Showing Alert Message
-        alertDialog.show();*/
-    }
 
     /**
      * This interface must be implemented by activities that contain this
