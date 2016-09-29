@@ -27,6 +27,7 @@
     <string name="scan_type2">QR Scan</string>
     <string name="scan_type3">NFC Scan</string>
     <string name="owner_name">Owner Name</string>
+    <string name="employee_name">Employee Name</string>
     <string name="submit_asset">Submit Asset</string>
     <string name="toggle_in">IN</string>
     <string name="toggle_out">OUT</string>
@@ -49,4 +50,9 @@
     <string name="title_activity_role">RoleActivity</string>
     <string name="role_name">Role Name</string>
     <string name="submit_role">Submit Role</string>
+
+    <string name="GPSAlertDialogTitle">Location not enabled</string>
+    <string name="GPSAlertDialogMessage">Please enable the location from settings</string>
+    <string name="cancel">Cancel</string>
+
 </resources>
