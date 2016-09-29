@@ -44,19 +44,26 @@
             android:enabled="false"
             android:layout_width="fill_parent">
         </EditText>
-        <Spinner
+        <EditText
             android:id="@+id/Scan_Type"
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
-            android:prompt="@string/scan_type"
-            android:layout_width="fill_parent"
-            android:entries="@array/scantypelist">
-        </Spinner>
+            android:enabled="false"
+            android:layout_width="fill_parent">
+        </EditText>
         <EditText
             android:id="@+id/Asset_Owner"
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:hint="@string/owner_name"
+            android:inputType="textPersonName"
+            android:layout_width="fill_parent">
+        </EditText>
+        <EditText
+            android:id="@+id/employee_name"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/employee_name"
             android:inputType="textPersonName"
             android:layout_width="fill_parent">
         </EditText>
@@ -74,7 +81,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/In_Out"
             android:textOff="@string/toggle_out"
-            android:textOn="@string/toggle_in" />
+            android:textOn="@string/toggle_in"
+            android:checked="true"/>
         <Button
             android:text="@string/submit_asset"
             android:layout_margin="5dp"

@@ -7,8 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.widget.Spinner;
 
 import app.niit.hackaton.agrt.R;
 import app.niit.hackaton.agrt.util.Constants;
@@ -32,9 +33,11 @@ public class AssetSubmitFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private String mScanCode;
+    private String mScanCode, mScanFormat;
     private View mRootView;
-    private EditText mScanCodeEditText;
+    private EditText mScanCodeEditText, mScanFormatEditText;
+    private Spinner mOrganisation;
+    private Button mSubmitAssetBtn;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -77,13 +80,35 @@ public class AssetSubmitFragment extends Fragment {
         Bundle bundle = getArguments();
         if (null != bundle) {
             mScanCode = bundle.getString(Constants.SCAN_CODE);
+            mScanFormat = bundle.getString(Constants.SCAN_FORMAT);
         }
         // Inflate the layout for this fragment
         mRootView = inflater.inflate(R.layout.fragment_asset_submit, null);
 
+        mSubmitAssetBtn = (Button)mRootView.findViewById(R.id.submit_asset);
+        mOrganisation = (Spinner) mRootView.findViewById(R.id.Organisation);
         mScanCodeEditText = (EditText) mRootView.findViewById(R.id.Scan_Code);
         mScanCodeEditText.setText(mScanCode);
-        mScanCodeEditText.setEnabled(true);
+        mScanFormatEditText = (EditText) mRootView.findViewById(R.id.Scan_Type);
+        mScanFormatEditText.setText(mScanFormat);
+
+        mSubmitAssetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // check if GPS enabled
+//                GPSTracker gpsTracker = new GPSTracker(getActivity());
+//
+//                if (gpsTracker.getIsGPSTrackingEnabled()) {
+//                    String lat = String.valueOf(gpsTracker.latitude);
+//                    String lng = String.valueOf(gpsTracker.latitude);
+//                }
+            }
+        });
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, Util.getOrganisationList());
+        /** Setting the adapter to the ListView */
+//        mOrganisation.setAdapter(adapter);
+
         return mRootView;
     }
 
