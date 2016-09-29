@@ -13,6 +13,8 @@ public class AssetRegister {
     private Long latitude;
     private Long logitude;
 
+    private String location;
+
     public Long getId() {
         return id;
     }
@@ -69,16 +71,27 @@ public class AssetRegister {
         this.logitude = logitude;
     }
 
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     @Override
     public String toString() {
         return "AssetRegister{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", asset=" + asset +
                 ", status=" + status +
                 ", registerDate=" + registerDate +
                 ", empName='" + empName + '\'' +
-                ", latitude='" + latitude + '\'' +
-                ", logitude='" + logitude + '\'' +
+                ", latitude=" + latitude +
+                ", logitude=" + logitude +
+                ", location='" + location + '\'' +
                 '}';
     }
+
 }

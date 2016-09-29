@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import app.niit.hackaton.agrt.AgtrApplication;
 import app.niit.hackaton.agrt.R;
 import app.niit.hackaton.agrt.dto.Organisation;
@@ -40,10 +38,6 @@ public class RoleFragment extends Fragment implements View.OnClickListener {
     EditText mRoleName;
     Spinner mOrganisation;
     Button mSubmitRole;
-    /**
-     * Items entered by the user is stored in this ArrayList variable
-     */
-    ArrayList<String> list = new ArrayList<String>();
     /**
      * Declaring an ArrayAdapter to set items to ListView
      */

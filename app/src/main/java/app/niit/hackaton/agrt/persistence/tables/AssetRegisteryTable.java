@@ -5,15 +5,11 @@ package app.niit.hackaton.agrt.persistence.tables;
  */
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.net.Uri;
 
 import java.io.File;
 
-import app.niit.hackaton.agrt.dto.Asset;
 import app.niit.hackaton.agrt.dto.AssetRegister;
-import app.niit.hackaton.agrt.dto.User;
-import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
 import app.niit.hackaton.agrt.provider.AgtrProvider;
 
 
@@ -27,6 +23,7 @@ public class AssetRegisteryTable {
     public static final String EMPLOYEE_NAME = "EMPLOYEE_NAME";
     public static final String LATITUDE = "LATITUDE";
     public static final String LONGITUDE = "LONGITUDE";
+    public static final String LOCATION = "LOCATION";
 
 
     //AssetRegisteryTable table and its content uri
@@ -41,7 +38,8 @@ public class AssetRegisteryTable {
             + REGISTER_DATE + " NUMBER,"
             + EMPLOYEE_NAME + " TEXT,"
             + LATITUDE + " NUMBER,"
-            + LONGITUDE + " NUMBER)";
+            + LONGITUDE + " NUMBER,"
+            + LOCATION + " TEXT)";
 
     public static final String SELECT_ALL = "SELECT * FROM " + TABLE;
 
@@ -53,7 +51,8 @@ public class AssetRegisteryTable {
             REGISTER_DATE,
             EMPLOYEE_NAME,
             LATITUDE,
-            LONGITUDE
+            LONGITUDE,
+            LOCATION
     };
 
     public static ContentValues createValuesFromObject(final AssetRegister v) {
@@ -64,6 +63,7 @@ public class AssetRegisteryTable {
         cv.put(EMPLOYEE_NAME, v.getEmpName());
         cv.put(LATITUDE, v.getLatitude());
         cv.put(LONGITUDE, v.getLogitude());
+        cv.put(LOCATION, v.getLocation());
         return cv;
     }
 
