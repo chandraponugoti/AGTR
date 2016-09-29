@@ -3,6 +3,7 @@
     package="app.niit.hackaton.agrt">
 
     <application
+        android:name=".AgtrApplication"
         android:allowBackup="true"
         android:icon="@mipmap/asset_geo_tag"
         android:label="@string/app_name"

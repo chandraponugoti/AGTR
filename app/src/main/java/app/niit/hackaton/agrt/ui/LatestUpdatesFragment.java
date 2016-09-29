@@ -7,8 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import app.niit.hackaton.agrt.R;
+import app.niit.hackaton.agrt.adapter.CustomAdapter;
+import app.niit.hackaton.agrt.dto.Asset;
+import app.niit.hackaton.agrt.dto.AssetRegister;
+import app.niit.hackaton.agrt.util.Util;
 
 
 /**
@@ -19,12 +28,13 @@ import app.niit.hackaton.agrt.R;
  * Use the {@link LatestUpdatesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LatestUpdatesFragment extends Fragment {
+public class LatestUpdatesFragment extends Fragment implements AdapterView.OnItemClickListener {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    ListView mAssetView;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -66,7 +76,41 @@ public class LatestUpdatesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_latest_updates, container, false);
+        View viewRoot = inflater.inflate(R.layout.fragment_latest_updates, container, false);
+        mAssetView = (ListView) viewRoot.findViewById(R.id.assets);
+        mAssetView.setAdapter(new CustomAdapter(this, getAssets()));
+        mAssetView.setOnItemClickListener(this);
+        return viewRoot;
+    }
+
+    public List<AssetRegister> getAssets() {
+        if (Util.getAssetRegistryList() != null && !Util.getAssetRegistryList().isEmpty()) {
+            return Util.getAssetRegistryList();
+        } else {
+            List assets = new ArrayList();
+            AssetRegister ar = new AssetRegister();
+            Asset a = new Asset();
+            a.setAssetName("mobile");
+            a.setAssetOwner("tom");
+            ar.setLocation("abcd");
+            ar.setAsset(a);
+            AssetRegister ar1 = new AssetRegister();
+            Asset a1 = new Asset();
+            a1.setAssetName("tab");
+            a1.setAssetOwner("hank");
+            ar1.setLocation("gpsde");
+            ar1.setAsset(a1);
+            AssetRegister ar2 = new AssetRegister();
+            Asset a2 = new Asset();
+            a2.setAssetName("tv");
+            a2.setAssetOwner("gim");
+            ar2.setLocation("hishdhilsodjaodsjoad");
+            ar2.setAsset(a2);
+            assets.add(ar);
+            assets.add(ar1);
+            assets.add(ar2);
+            return assets;
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,6 +135,29 @@ public class LatestUpdatesFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         //mListener = null;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        int itemPosition = position;
+        /*AssetRegister  itemValue    = (AssetRegister) mAssetView.getItemAtPosition(position);
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        // Setting Dialog Title
+        alertDialog.setTitle("Asset Info");
+        StringBuffer str = new StringBuffer();
+        str.append("ASSET OWNER:" + itemValue.getAsset().getAssetOwner());
+        str.append("TAGGED LOCATION:" + itemValue.getLocation());
+        // Setting Dialog Message
+        alertDialog.setMessage(str);
+        // Setting Icon to Dialog
+        alertDialog.setIcon(R.mipmap.asset_geo_tag);
+        // Setting OK Button
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        // Showing Alert Message
+        alertDialog.show();*/
     }
 
     /**
