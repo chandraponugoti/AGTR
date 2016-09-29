@@ -14,6 +14,7 @@ import app.niit.hackaton.agrt.dto.Asset;
 import app.niit.hackaton.agrt.dto.AssetRegister;
 import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
 import app.niit.hackaton.agrt.provider.AgtrProvider;
+import app.niit.hackaton.agrt.util.Util;
 
 
 public class AssetTable {
@@ -66,18 +67,22 @@ public class AssetTable {
         return cv;
     }
 
-    /*public static Asset createObjectFromCursor(final Cursor cursor) {
-        final String id = AgtrDbHelper.getInt(cursor, ID);
-        final int assetId = AgtrDbHelper.getInt(cursor, ASSET_NAME);
-        final String status = AgtrDbHelper.getString(cursor,ASSET_DESCRIPTION, "");
-        final long registerDate = AgtrDbHelper.getLong(cursor,SCAN_CODE,0);
-        final String empName = AgtrDbHelper.getString(cursor,SCAN_TYPE,"");
-        final long longitude = AgtrDbHelper.getLong(cursor,ASSET_OWNER,0);
-        final long latitude = AgtrDbHelper.getLong(cursor,ORG_ID,0);
+    public static Asset createObjectFromCursor(final Cursor cursor) {
+        final Long id = AgtrDbHelper.getLong(cursor, ID, 0);
+        final String name = AgtrDbHelper.getString(cursor, ASSET_NAME, "");
+        final String description = AgtrDbHelper.getString(cursor,ASSET_DESCRIPTION, "");
+        final String scan_code = AgtrDbHelper.getString(cursor,SCAN_CODE,"");
+        final String scan_type = AgtrDbHelper.getString(cursor,SCAN_TYPE,"");
+        final String asset_owner = AgtrDbHelper.getString(cursor,ASSET_OWNER,"");
+        final long orgId = AgtrDbHelper.getLong(cursor,ORG_ID,0);
         final Asset asset = new Asset();
         asset.setId(id);
-        asset.setConstructionSeries(cons);
-        asset.setSiteId(siteid);
-        return
-    }*/
+        asset.setAssetName(name);
+        asset.setAssetDescription(description);
+        asset.setScanCode(scan_code);
+        asset.setScanType(scan_type);
+        asset.setAssetOwner(asset_owner);
+        asset.setOrg(Util.getOrganisation(orgId));
+        return asset;
+    }
 }

@@ -293,4 +293,38 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         }
         return assets;
     }
+
+    public ArrayList<AssetRegister> getAssetsListFromRegister() {
+        final ArrayList<AssetRegister> assets = new ArrayList<AssetRegister>();
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                AssetRegisteryTable.SELECT_ALL, null
+        );
+        if(cursor!=null && cursor.getCount()>0) {
+            cursor.moveToFirst();
+            do {
+                final AssetRegister asset = AssetRegisteryTable.createObjectFromCursor(cursor);
+                if ((null != assets)) {
+                    assets.add(asset);
+                }
+            } while (cursor.moveToNext());
+        }
+        return assets;
+    }
+
+    public Asset getAssetById(Long id) {
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                AssetTable.SELECT_ALL + " WHERE  " + AssetTable.ID + " = '" + id + "'", null
+        );
+        Asset asset = null;
+        if (0 < cursor.getCount()) {
+            cursor.moveToFirst();
+            asset = AssetTable.createObjectFromCursor(cursor);
+        }
+        cursor.close();
+        return asset;
+    }
 }
