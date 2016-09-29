@@ -5,12 +5,16 @@ package app.niit.hackaton.agrt.persistence.tables;
  */
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 
 import java.io.File;
 
 import app.niit.hackaton.agrt.dto.AssetRegister;
+import app.niit.hackaton.agrt.dto.Status;
+import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
 import app.niit.hackaton.agrt.provider.AgtrProvider;
+import app.niit.hackaton.agrt.util.Util;
 
 
 public class AssetRegisteryTable {
@@ -34,7 +38,7 @@ public class AssetRegisteryTable {
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE + " ("
             + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + ASSET_ID + " INTEGER,"
-            + STATUS + " TEXT,"
+            + STATUS + " INTEGER,"
             + REGISTER_DATE + " NUMBER,"
             + EMPLOYEE_NAME + " TEXT,"
             + LATITUDE + " NUMBER,"
@@ -68,19 +72,27 @@ public class AssetRegisteryTable {
     }
 
 
-   /* public static AssetRegister createObjectFromCursor(final Cursor cursor) {
+    public static AssetRegister createObjectFromCursor(final Cursor cursor) {
         final String id = AgtrDbHelper.getString(cursor, ID, "");
-        final int assetId = AgtrDbHelper.getInt(cursor, ASSET_ID);
-
-        final String status = AgtrDbHelper.getString(cursor, STATUS, "");
+        final Long assetId = AgtrDbHelper.getLong(cursor, ASSET_ID, 0);
+        final int status = AgtrDbHelper.getInt(cursor, STATUS);
         final long registerDate = AgtrDbHelper.getLong(cursor, REGISTER_DATE, 0);
         final String empName = AgtrDbHelper.getString(cursor, EMPLOYEE_NAME, "");
         final long longitude = AgtrDbHelper.getLong(cursor, LATITUDE, 0);
         final long latitude = AgtrDbHelper.getLong(cursor, LONGITUDE, 0);
+        final String location = AgtrDbHelper.getString(cursor, LONGITUDE, "");
         final AssetRegister asset = new AssetRegister();
-        asset.setAsset(objectClass);
-        asset.setConstructionSeries(cons);
-        asset.setSiteId(siteid);
-        return
-    }*/
+        asset.setAsset(Util.getAsset(assetId));
+        if(status == 0) {
+            asset.setStatus(Status.IN);
+        }else{
+            asset.setStatus(Status.OUT);
+        }
+        asset.setRegisterDate(registerDate);
+        asset.setEmpName(empName);
+        asset.setLatitude(latitude);
+        asset.setLogitude(longitude);
+        asset.setLocation(location);
+        return asset;
+    }
 }

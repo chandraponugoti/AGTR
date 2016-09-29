@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.niit.hackaton.agrt.AgtrApplication;
+import app.niit.hackaton.agrt.dto.Asset;
+import app.niit.hackaton.agrt.dto.AssetRegister;
 import app.niit.hackaton.agrt.dto.Organisation;
 
 /**
@@ -15,6 +17,11 @@ public class Util {
     public static Organisation getOrganisation(Long id) {
         Organisation org = AgtrApplication.getDbHelper().getOrganisationById(id);
         return org;
+    }
+
+    public static Asset getAsset(Long id) {
+        Asset asset = AgtrApplication.getDbHelper().getAssetById(id);
+        return asset;
     }
 
     public static List<String> getParentOrganisationList() {
@@ -35,5 +42,12 @@ public class Util {
             list.add(org.getOrganisationName());
         }
         return list;
+    }
+
+    public static List<AssetRegister> getAssetRegistryList() {
+        /** Items entered by the user is stored in this ArrayList variable */
+        ArrayList<AssetRegister> list = new ArrayList<AssetRegister>();
+        List<AssetRegister> assetList = AgtrApplication.getDbHelper().getAssetsListFromRegister();
+        return assetList;
     }
 }
