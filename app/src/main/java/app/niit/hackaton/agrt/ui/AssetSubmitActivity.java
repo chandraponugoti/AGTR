@@ -1,9 +1,8 @@
 package app.niit.hackaton.agrt.ui;
 
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import app.niit.hackaton.agrt.R;
 
@@ -20,6 +19,6 @@ public class AssetSubmitActivity extends FragmentActivity {
         mFragment= new AssetSubmitFragment();
         mFragment.setArguments(extras);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,mFragment    ).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFragment).commit();
     }
 }

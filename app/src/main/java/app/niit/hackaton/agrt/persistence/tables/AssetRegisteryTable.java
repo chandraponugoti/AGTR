@@ -18,9 +18,6 @@ import app.niit.hackaton.agrt.util.Util;
 
 
 public class AssetRegisteryTable {
-    //AssetRegisteryTable table database columns keys
-    //The ID column must named only _id. Then only CursorAdapter will work
-    private static final String ID = "_id";
     public static final String ASSET_ID = "ASSET_ID";
     public static final String STATUS = "STATUS";
     public static final String REGISTER_DATE = "REGISTER_DATE";
@@ -28,12 +25,13 @@ public class AssetRegisteryTable {
     public static final String LATITUDE = "LATITUDE";
     public static final String LONGITUDE = "LONGITUDE";
     public static final String LOCATION = "LOCATION";
-
-
     //AssetRegisteryTable table and its content uri
-    public static final String TABLE = "ASSET_REGISTREY";
+    public static final String TABLE = "ASSET_REGISTERY";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AgtrProvider.AUTHORITY + File.separator + TABLE);
-
+    public static final String SELECT_ALL = "SELECT * FROM " + TABLE;
+    //AssetRegisteryTable table database columns keys
+    //The ID column must named only _id. Then only CursorAdapter will work
+    private static final String ID = "_id";
     //AssetRegisteryTable table creation
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE + " ("
             + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -44,9 +42,6 @@ public class AssetRegisteryTable {
             + LATITUDE + " NUMBER,"
             + LONGITUDE + " NUMBER,"
             + LOCATION + " TEXT)";
-
-    public static final String SELECT_ALL = "SELECT * FROM " + TABLE;
-
     //AssetRegisteryTable table projection
     public static final String[] PROJECTION = new String[]{
             ID,

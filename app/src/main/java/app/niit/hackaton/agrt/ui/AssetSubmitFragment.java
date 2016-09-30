@@ -220,7 +220,7 @@ public class AssetSubmitFragment extends Fragment {
 //                    String lng = String.valueOf(gpsTracker.latitude);
 //                }
         AssetRegister assetRegister = new AssetRegister();
-        assetRegister.setAsset(asset);
+        assetRegister.setAsset(Util.getAssetByScanCodeAndType(mScanCodeET.getText().toString(), mScanFormatET.getText().toString()));
         assetRegister.setEmpName(mEmployeeNameET.getText().toString());
         assetRegister.setLatitude(lat);
         assetRegister.setLongitude(lng);

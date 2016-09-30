@@ -50,4 +50,8 @@ public class Util {
         List<AssetRegister> assetList = AgtrApplication.getDbHelper().getAssetsListFromRegister();
         return assetList;
     }
+
+    public static Asset getAssetByScanCodeAndType(String scancode, String scantype) {
+        return AgtrApplication.getDbHelper().getAssetByScanCodeAndType(scancode, scantype);
+    }
 }

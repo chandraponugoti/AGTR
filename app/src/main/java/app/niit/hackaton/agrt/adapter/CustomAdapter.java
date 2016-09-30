@@ -52,8 +52,10 @@ public class CustomAdapter extends BaseAdapter {
         Holder holder = new Holder();
         View rowView;
         rowView = inflater.inflate(R.layout.asset_list_updates, null);
-        holder.tv = (TextView) rowView.findViewById(R.id.assetName);
-        holder.tv.setText(result.get(position).getAsset().getAssetName());
+        holder.assetName = (TextView) rowView.findViewById(R.id.assetName);
+        holder.assetName.setText(result.get(position).getAsset().getAssetName());
+        holder.assetBearer = (TextView) rowView.findViewById(R.id.assetBearer);
+        holder.assetBearer.setText(result.get(position).getEmpName());
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +84,8 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public class Holder {
-        TextView tv;
+        TextView assetName;
+        TextView assetBearer;
     }
 
 }
