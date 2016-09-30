@@ -80,7 +80,7 @@ public class AssetRegisteryTable {
         final String empName = AgtrDbHelper.getString(cursor, EMPLOYEE_NAME, "");
         final long longitude = AgtrDbHelper.getLong(cursor, LATITUDE, 0);
         final long latitude = AgtrDbHelper.getLong(cursor, LONGITUDE, 0);
-        final String location = AgtrDbHelper.getString(cursor, LONGITUDE, "");
+        final String location = AgtrDbHelper.getString(cursor, LOCATION, "");
         final AssetRegister asset = new AssetRegister();
         asset.setAsset(Util.getAsset(assetId));
         if(status == 0) {
@@ -91,7 +91,7 @@ public class AssetRegisteryTable {
         asset.setRegisterDate(registerDate);
         asset.setEmpName(empName);
         asset.setLatitude(latitude);
-        asset.setLogitude(longitude);
+        asset.setLongitude(longitude);
         asset.setLocation(location);
         return asset;
     }

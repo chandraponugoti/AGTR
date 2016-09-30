@@ -159,7 +159,7 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
     public long saveOrganisation(final Organisation o) {
         final SQLiteDatabase db = getReadableDatabase();
         final ContentValues cv = OrganizationTable.createValuesFromObject(o);
-        long row = db.insert(OrganizationTable.TABLE,null,cv);
+        long row = db.insert(OrganizationTable.TABLE, null, cv);
         if (db.isOpen()) {
             db.close();
         }
@@ -226,11 +226,11 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         return row;
     }
 
-    public Organisation getOrganisationIdByName(String orgName){
+    public Organisation getOrganisationIdByName(String orgName) {
         final SQLiteDatabase db = getReadableDatabase();
         final Cursor cursor;
         cursor = db.rawQuery(
-                OrganizationTable.SELECT_ALL + " WHERE  " + OrganizationTable.ORG_NAME + " = '" + orgName + "'",null
+                OrganizationTable.SELECT_ALL + " WHERE  " + OrganizationTable.ORG_NAME + " = '" + orgName + "'", null
         );
         Organisation lf = null;
         if (0 < cursor.getCount()) {
@@ -256,6 +256,21 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         return organisation;
     }
 
+    public Asset getAssetByScanCodeAndType(String scancode, String scantype) {
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                AssetTable.SELECT_ALL + " WHERE  " + AssetTable.SCAN_CODE + " = '" + scancode + "' AND " + AssetTable.SCAN_TYPE + " = '" + scantype + "'", null
+        );
+        Asset asset = null;
+        if (0 < cursor.getCount()) {
+            cursor.moveToFirst();
+            asset = AssetTable.createObjectFromCursor(cursor);
+        }
+        cursor.close();
+        return asset;
+    }
+
     public ArrayList<Organisation> getParentOrganisationList() {
         final ArrayList<Organisation> assets = new ArrayList<Organisation>();
         final SQLiteDatabase db = getReadableDatabase();
@@ -263,7 +278,7 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         cursor = db.rawQuery(
                 OrganizationTable.SELECT_ALL, null
         );
-        if(cursor!=null && cursor.getCount()>0) {
+        if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
             do {
                 final Organisation v = OrganizationTable.createObjectFromCursor(cursor);
@@ -282,7 +297,7 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         cursor = db.rawQuery(
                 OrganizationTable.SELECT_ALL, null
         );
-        if(cursor!=null && cursor.getCount()>0) {
+        if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
             do {
                 final Organisation v = OrganizationTable.createObjectFromCursor(cursor);
@@ -301,7 +316,7 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         cursor = db.rawQuery(
                 AssetRegisteryTable.SELECT_ALL, null
         );
-        if(cursor!=null && cursor.getCount()>0) {
+        if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
             do {
                 final AssetRegister asset = AssetRegisteryTable.createObjectFromCursor(cursor);

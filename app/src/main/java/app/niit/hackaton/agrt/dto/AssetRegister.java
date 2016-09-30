@@ -67,8 +67,8 @@ public class AssetRegister {
         return logitude;
     }
 
-    public void setLogitude(Long logitude) {
-        this.logitude = logitude;
+    public void setLongitude(Long longitude) {
+        this.logitude = longitude;
     }
 
 
