@@ -11,7 +11,6 @@ import android.net.Uri;
 import java.io.File;
 
 import app.niit.hackaton.agrt.dto.Asset;
-import app.niit.hackaton.agrt.dto.AssetRegister;
 import app.niit.hackaton.agrt.persistence.AgtrDbHelper;
 import app.niit.hackaton.agrt.provider.AgtrProvider;
 import app.niit.hackaton.agrt.util.Util;
@@ -21,7 +20,7 @@ public class AssetTable {
     //AssetTable table database columns keys
     //The ID column must named only _id. Then only CursorAdapter will work
     public static final String ID = "_id";
-    public static final String ASSET_NAME   = "ASSET_NAME ";
+    public static final String ASSET_NAME = "ASSET_NAME";
     public static final String ASSET_DESCRIPTION   = "ASSET_DESCRIPTION";
     public static final String SCAN_CODE  = "SCAN_CODE";
     public static final String SCAN_TYPE  = "SCAN_TYPE";
@@ -48,10 +47,10 @@ public class AssetTable {
     //AssetTable table projection
     public static final String[] PROJECTION = new String[]{
             ID,
-            ASSET_NAME ,
+            ASSET_NAME,
             ASSET_DESCRIPTION,
             SCAN_CODE,
-            SCAN_TYPE ,
+            SCAN_TYPE,
             ASSET_OWNER,
             ORG_ID
     };
