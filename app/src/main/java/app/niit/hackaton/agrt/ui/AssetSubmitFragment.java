@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -22,6 +24,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import app.niit.hackaton.agrt.AgtrApplication;
 import app.niit.hackaton.agrt.R;
@@ -146,7 +152,11 @@ public class AssetSubmitFragment extends Fragment {
         mSubmitAssetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitAsset(asset);
+                try {
+                    submitAsset(asset);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         return mRootView;
@@ -189,6 +199,32 @@ public class AssetSubmitFragment extends Fragment {
         }*/
     }
 
+    /**
+     * Provides the complete location name using the current lat, lng values
+     *
+     * @return Location name
+     * @throws IOException
+     */
+    private String getLocationName() throws IOException {
+        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+        List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+        return getFullAddress(addresses.get(0));
+    }
+
+    /**
+     * Concatenates all the address lines of the given address
+     *
+     * @param address
+     * @return
+     */
+    private String getFullAddress(Address address) {
+        String addrs = address.getAddressLine(0);
+        for (int i = 1; i < address.getMaxAddressLineIndex(); i++) {
+            addrs = addrs + ", " + address.getAddressLine(i);
+        }
+        return addrs;
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -223,7 +259,7 @@ public class AssetSubmitFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
 
     }*/
-    private void submitAsset(Asset asset) {
+    private void submitAsset(Asset asset) throws IOException {
         //Save asset in the database, if not exist
         if (asset == null) {
             asset = new Asset();
@@ -246,20 +282,20 @@ public class AssetSubmitFragment extends Fragment {
         long date = 0;
 
         getCurrentLocation();
-        AssetRegister assetRegister = new AssetRegister();
-        assetRegister.setAsset(Util.getAssetByScanCodeAndType(mScanCode, mScanFormat));
-        assetRegister.setEmpName(mEmployeeNameET.getText().toString());
-        assetRegister.setLatitude(latitude);
-        assetRegister.setLongitude(longitude);
-        assetRegister.setLocation("Bangalore");
-        assetRegister.setRegisterDate(date);
-        if (mInOutButton.isChecked())
-            assetRegister.setStatus(Status.IN);
-        else
-            assetRegister.setStatus(Status.OUT);
-
         //Stay on the same screen if the lat, lng are not available and let the user enable location settings
         if (latitude != 0 || longitude != 0.0) {
+            AssetRegister assetRegister = new AssetRegister();
+            assetRegister.setAsset(Util.getAssetByScanCodeAndType(mScanCode, mScanFormat));
+            assetRegister.setEmpName(mEmployeeNameET.getText().toString());
+            assetRegister.setLatitude(latitude);
+            assetRegister.setLongitude(longitude);
+            assetRegister.setLocation(getLocationName());
+            assetRegister.setRegisterDate(date);
+            if (mInOutButton.isChecked())
+                assetRegister.setStatus(Status.IN);
+            else
+                assetRegister.setStatus(Status.OUT);
+
             long assetRegisteryRow = AgtrApplication.getDbHelper().saveAssetRegister(assetRegister);
             if (assetRegisteryRow != -1) {
                 Toast.makeText(this.getContext(), "Asset registry saved successfully", Toast.LENGTH_SHORT).show();
