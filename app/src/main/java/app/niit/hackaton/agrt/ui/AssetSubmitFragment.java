@@ -88,17 +88,18 @@ public class AssetSubmitFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
-        if (nfcAdapter == null) {
-            Toast.makeText(getActivity(), "NFC NOT supported on this devices!", Toast.LENGTH_LONG).show();
-            getActivity().finish();
-        } else if (!nfcAdapter.isEnabled()) {
-            Toast.makeText(getActivity(), "NFC NOT Enabled!", Toast.LENGTH_LONG).show();
-            getActivity().finish();
-        }
+
         Bundle bundle = getArguments();
         if (null != bundle) {
             if (bundle.getString(Constants.SCAN_CODE) == null && bundle.getString(Constants.SCAN_FORMAT) == null) {
+                NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
+                if (nfcAdapter == null) {
+                    Toast.makeText(getActivity(), "NFC NOT supported on this devices!", Toast.LENGTH_LONG).show();
+                    getActivity().finish();
+                } else if (!nfcAdapter.isEnabled()) {
+                    Toast.makeText(getActivity(), "NFC NOT Enabled!", Toast.LENGTH_LONG).show();
+                    getActivity().finish();
+                }
                 Tag tag = bundle.getParcelable(NfcAdapter.EXTRA_TAG);
                 byte[] tagId = tag.getId();
                 String tagCode = "";
@@ -211,6 +212,7 @@ public class AssetSubmitFragment extends Fragment {
     /*public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
     }*/
     private void submitAsset(Asset asset) {
         //Save asset in the database, if not exist
