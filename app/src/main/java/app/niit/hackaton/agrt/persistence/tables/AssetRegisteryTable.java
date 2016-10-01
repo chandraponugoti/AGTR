@@ -31,7 +31,7 @@ public class AssetRegisteryTable {
     public static final String SELECT_ALL = "SELECT * FROM " + TABLE;
     //AssetRegisteryTable table database columns keys
     //The ID column must named only _id. Then only CursorAdapter will work
-    private static final String ID = "_id";
+    public static final String ID = "_id";
     //AssetRegisteryTable table creation
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE + " ("
             + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"

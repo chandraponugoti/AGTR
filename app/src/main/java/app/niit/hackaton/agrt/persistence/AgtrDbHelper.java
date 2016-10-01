@@ -314,7 +314,7 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         final SQLiteDatabase db = getReadableDatabase();
         final Cursor cursor;
         cursor = db.rawQuery(
-                AssetRegisteryTable.SELECT_ALL, null
+                AssetRegisteryTable.SELECT_ALL + " ORDER BY " + AssetRegisteryTable.ID + " DESC", null
         );
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
