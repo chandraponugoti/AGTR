@@ -5,9 +5,9 @@ package app.niit.hackaton.agrt.dto;
  */
 
 public class Organisation {
-    private int id;
+    private Long id;
 
-    private int parentId;
+    private Long parentId;
 
     private String organisationName = "";
 
@@ -15,19 +15,19 @@ public class Organisation {
 
     private String address = "";
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
@@ -53,6 +53,15 @@ public class Organisation {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /*
+    Donot change this to string as this is used for spinner to show organisation.
+    If possible solution is implemented, then we can change.
+     */
+    @Override
+    public String toString() {
+        return this.organisationName;
     }
 
 }

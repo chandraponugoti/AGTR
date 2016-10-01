@@ -54,11 +54,11 @@ public class OrganizationTable {
 
     public static Organisation createObjectFromCursor(final Cursor cursor) {
         Organisation org = new Organisation();
-        final int id = AgtrDbHelper.getInt(cursor, ID);
+        final Long id = AgtrDbHelper.getLong(cursor, ID, 0);
         final String name = AgtrDbHelper.getString(cursor, ORG_NAME, "");
         final String branch = AgtrDbHelper.getString(cursor, BRANCH, "");
         final String address = AgtrDbHelper.getString(cursor, ADDRESS, "");
-        final int parent = AgtrDbHelper.getInt(cursor, PARENT_ORG_ID);
+        final Long parent = AgtrDbHelper.getLong(cursor, PARENT_ORG_ID, 0);
         org.setOrganisationName(name);
         org.setBranch(branch);
         org.setAddress(address);

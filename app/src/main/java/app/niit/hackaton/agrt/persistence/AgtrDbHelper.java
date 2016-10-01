@@ -226,26 +226,26 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         return row;
     }
 
-    public Organisation getOrganisationIdByName(String orgName) {
-        final SQLiteDatabase db = getReadableDatabase();
-        final Cursor cursor;
-        cursor = db.rawQuery(
-                OrganizationTable.SELECT_ALL + " WHERE  " + OrganizationTable.ORG_NAME + " = '" + orgName + "'", null
-        );
-        Organisation lf = null;
-        if (0 < cursor.getCount()) {
-            cursor.moveToFirst();
-            lf = OrganizationTable.createObjectFromCursor(cursor);
-        }
-        cursor.close();
-        return lf;
-    }
-
     public Organisation getOrganisationById(Long id) {
         final SQLiteDatabase db = getReadableDatabase();
         final Cursor cursor;
         cursor = db.rawQuery(
                 OrganizationTable.SELECT_ALL + " WHERE  " + OrganizationTable.ID + " = '" + id + "'", null
+        );
+        Organisation organisation = null;
+        if (0 < cursor.getCount()) {
+            cursor.moveToFirst();
+            organisation = OrganizationTable.createObjectFromCursor(cursor);
+        }
+        cursor.close();
+        return organisation;
+    }
+
+    public Organisation getOrganisationByName(String name) {
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                OrganizationTable.SELECT_ALL + " WHERE  " + OrganizationTable.ORG_NAME + " = '" + name + "'", null
         );
         Organisation organisation = null;
         if (0 < cursor.getCount()) {
@@ -341,5 +341,55 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return asset;
+    }
+
+    public ArrayList<Role> getRolesByOrganisationId(Long orgId) {
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                RoleTable.SELECT_ALL + " WHERE  " + RoleTable.ORG_ID + " = '" + orgId + "'", null
+        );
+        ArrayList<Role> roles = new ArrayList<Role>();
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            do {
+                final Role role = RoleTable.createObjectFromCursor(cursor);
+                if ((null != roles)) {
+                    roles.add(role);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return roles;
+    }
+
+    public Role getRolesById(Long roleId) {
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                RoleTable.SELECT_ALL + " WHERE  " + RoleTable.ID + " = '" + roleId + "'", null
+        );
+        Role role = null;
+        if (0 < cursor.getCount()) {
+            cursor.moveToFirst();
+            role = RoleTable.createObjectFromCursor(cursor);
+        }
+        cursor.close();
+        return role;
+    }
+
+    public User getUserProfileByUserNameAndPassword(String userName, String password) {
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                AppUserTable.SELECT_ALL + " WHERE  " + AppUserTable.ACCOUNT_NAME + " = '" + userName + "' AND " + AppUserTable.PASSWORD + " = '" + password + "'", null
+        );
+        User user = null;
+        if (0 < cursor.getCount()) {
+            cursor.moveToFirst();
+            user = AppUserTable.createObjectFromCursor(cursor);
+        }
+        cursor.close();
+        return user;
     }
 }

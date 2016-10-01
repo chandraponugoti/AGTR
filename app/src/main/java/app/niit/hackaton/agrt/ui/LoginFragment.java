@@ -8,16 +8,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import app.niit.hackaton.agrt.R;
+import app.niit.hackaton.agrt.dto.User;
+import app.niit.hackaton.agrt.util.Util;
 
 
 public class LoginFragment extends Fragment {
     Button mLoginButton;
+    EditText mAccountname;
+    EditText mPassword;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_login,null);
+        mAccountname = (EditText) rootView.findViewById(R.id.et_username);
+        mPassword = (EditText) rootView.findViewById(R.id.et_password);
         mLoginButton = (Button)rootView.findViewById(R.id.btn_login);
 
         return rootView;
@@ -38,7 +45,15 @@ public class LoginFragment extends Fragment {
     }
 
     private void doLogin() {
-        startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
-        getActivity().finish();
+        String username = mAccountname.getText().toString();
+        String password = mPassword.getText().toString();
+        User user = Util.getUserProfileByUserNameAndPassword(username, password);
+        if (user != null) {
+            startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
+            getActivity().finish();
+        } else if (username.equals("admin") && password.equals("admin")) {
+            startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
+            getActivity().finish();
+        }
     }
 }

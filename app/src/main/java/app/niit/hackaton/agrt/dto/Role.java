@@ -36,12 +36,12 @@ public class Role {
         this.org = org;
     }
 
+    /*
+       Donot change this toString as this is used for spinner to show role.
+       If possible solution is implemented, then we can change.
+    */
     @Override
     public String toString() {
-        return "Role{" +
-                "id='" + id + '\'' +
-                ", roleName='" + roleName + '\'' +
-                ", org=" + org +
-                '}';
+        return this.roleName;
     }
 }

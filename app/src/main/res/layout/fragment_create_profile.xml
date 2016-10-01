@@ -7,84 +7,84 @@
     android:scrollbars="vertical">
     <LinearLayout
         android:layout_width="fill_parent"
-        android:orientation="vertical"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
         <TextView
             android:id="@+id/Profile"
-            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/profile"
             android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="@string/profile"
             android:textSize="10pt">
         </TextView>
         <EditText
             android:id="@+id/First_Name"
-            android:layout_margin="5dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:hint="@string/first_name"
-            android:inputType="textPersonName"
-            android:layout_width="fill_parent">
+            android:inputType="textPersonName">
         </EditText>
         <EditText
             android:id="@+id/Last_Name"
-            android:layout_margin="5dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:hint="@string/last_name"
-            android:inputType="textPersonName"
-            android:layout_width="fill_parent">
+            android:inputType="textPersonName">
         </EditText>
         <EditText
             android:id="@+id/Password"
-            android:layout_margin="5dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:hint="@string/login_password"
-            android:inputType="textPassword"
-            android:layout_width="fill_parent">
+            android:inputType="textPassword">
         </EditText>
         <EditText
             android:id="@+id/Account_Name"
-            android:layout_margin="5dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:hint="@string/account_name"
-            android:inputType="textPersonName"
-            android:layout_width="fill_parent">
+            android:inputType="textPersonName">
         </EditText>
         <EditText
             android:id="@+id/Nfc_Code"
-            android:layout_margin="5dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:hint="@string/nfc_code"
-            android:inputType="textPersonName"
-            android:layout_width="fill_parent">
+            android:inputType="textPersonName">
         </EditText>
         <EditText
             android:id="@+id/Mobile_Number"
-            android:layout_margin="5dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/mobile_number"
-            android:inputType="textPersonName"
-            android:layout_width="fill_parent">
-        </EditText>
-        <Spinner
-            android:id="@+id/Organisation"
-            android:layout_margin="5dp"
-            android:layout_height="wrap_content"
-            android:prompt="@string/select_organisation"
-            android:layout_width="fill_parent">
-        </Spinner>
-        <Spinner
-            android:id="@+id/Role"
-            android:layout_margin="5dp"
-            android:layout_height="wrap_content"
-            android:prompt="@string/select_role"
-            android:layout_width="fill_parent">
-        </Spinner>
-        <Button
-            android:text="@string/submit_profile"
-            android:layout_margin="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/submit_profile" />
+            android:layout_margin="5dp"
+            android:hint="@string/mobile_number"
+            android:inputType="textPersonName">
+        </EditText>
+        <Spinner
+            android:id="@+id/Org_Profile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:prompt="@string/select_organisation">
+        </Spinner>
+        <Spinner
+            android:id="@+id/Role_Profile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:prompt="@string/select_role">
+        </Spinner>
+        <Button
+            android:id="@+id/submit_profile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/submit_profile" />
     </LinearLayout>
 </ScrollView>

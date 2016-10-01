@@ -18,6 +18,7 @@ import android.widget.Toast;
 import app.niit.hackaton.agrt.AgtrApplication;
 import app.niit.hackaton.agrt.R;
 import app.niit.hackaton.agrt.dto.Organisation;
+import app.niit.hackaton.agrt.dto.Role;
 import app.niit.hackaton.agrt.util.Util;
 
 
@@ -37,7 +38,7 @@ public class OrganisationSubmitFragment extends Fragment implements View.OnClick
     /**
      * Declaring an ArrayAdapter to set items to ListView
      */
-    ArrayAdapter<String> adapter;
+    ArrayAdapter adapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -92,12 +93,8 @@ public class OrganisationSubmitFragment extends Fragment implements View.OnClick
         mParent = (Spinner) rootView.findViewById(R.id.Parent_Organisation);
         mIsParent = (CheckBox)rootView.findViewById(R.id.Is_Parent);
         mSubmit = (Button)rootView.findViewById(R.id.submit_organisation);
-        /** Defining the ArrayAdapter to set items to Spinner Widget */
-        adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, Util.getParentOrganisationList());
-        /** Setting the adapter to the ListView */
+        adapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_item, Util.getParentOrganisationList());
         mParent.setAdapter(adapter);
-
-        /** Adding radio buttons for the spinner items */
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mParent.setVisibility(View.GONE);
         mSubmit.setOnClickListener(this);
@@ -125,17 +122,27 @@ public class OrganisationSubmitFragment extends Fragment implements View.OnClick
         org.setAddress(mAddress.getText().toString());
         org.setBranch(mBranch.getText().toString());
         if(mIsParent.isChecked()) {
-            org.setParentId(0);
+            org.setParentId(0L);
         } else {
-            Organisation organisation = AgtrApplication.getDbHelper().getOrganisationIdByName(mParent.getSelectedItem().toString());
+            Organisation organisation = (Organisation) mParent.getSelectedItem();
             org.setParentId(organisation.getId());
         }
         long row = AgtrApplication.getDbHelper().saveOrganisation(org);
         if(row != -1){
-            Toast.makeText(this.getContext(), "Success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getContext(), "Organisation Creation Success", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(this.getContext(), "failure", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getContext(), "Organisation Creation Failure", Toast.LENGTH_SHORT).show();
         }
+        Role defaultRole = new Role();
+        defaultRole.setOrg(Util.getOrganisation(mOrganisationName.getText().toString()));
+        defaultRole.setRoleName("Admin");
+        long roleRow = AgtrApplication.getDbHelper().saveRole(defaultRole);
+        if (roleRow != -1) {
+            Toast.makeText(this.getContext(), "Default Role Creation Success", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this.getContext(), "Default Role Creation Failure", Toast.LENGTH_SHORT).show();
+        }
+
         startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
         getActivity().finish();
     }

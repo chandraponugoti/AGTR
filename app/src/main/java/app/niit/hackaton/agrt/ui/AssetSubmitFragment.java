@@ -125,7 +125,7 @@ public class AssetSubmitFragment extends Fragment {
         mScanCodeET.setText(mScanCode);
         mScanFormatET.setText(mScanFormat);
         try {
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, Util.getOrganisationList());
+            ArrayAdapter adapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_item, Util.getOrganisationList());
             /** Setting the adapter to the ListView */
             mOrganisation.setAdapter(adapter);
         } catch (Exception e) {
@@ -195,7 +195,7 @@ public class AssetSubmitFragment extends Fragment {
         //Save asset in the database, if not exist
         if (asset == null) {
             asset = new Asset();
-            Organisation organisation = AgtrApplication.getDbHelper().getOrganisationIdByName(mOrganisation.getSelectedItem().toString());
+            Organisation organisation = (Organisation) mOrganisation.getSelectedItem();
             asset.setOrg(organisation);
             asset.setAssetName(mAssetNameET.getText().toString());
             asset.setAssetDescription(mAssetDescrET.getText().toString());

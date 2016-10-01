@@ -89,7 +89,7 @@ public class RoleFragment extends Fragment implements View.OnClickListener {
         mSubmitRole = (Button) rootView.findViewById(R.id.submit_role);
         mSubmitRole.setOnClickListener(this);
         /** Defining the ArrayAdapter to set items to Spinner Widget */
-        adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, Util.getOrganisationList());
+        adapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_item, Util.getOrganisationList());
         /** Setting the adapter to the ListView */
         mOrganisation.setAdapter(adapter);
         /** Adding radio buttons for the spinner items */
@@ -131,7 +131,7 @@ public class RoleFragment extends Fragment implements View.OnClickListener {
 
     private void doSubmit() {
         final Role role = new Role();
-        Organisation organisation = AgtrApplication.getDbHelper().getOrganisationIdByName(mOrganisation.getSelectedItem().toString());
+        Organisation organisation = (Organisation) mOrganisation.getSelectedItem();
         role.setOrg(organisation);
         role.setRoleName(mRoleName.getText().toString());
         long row = AgtrApplication.getDbHelper().saveRole(role);
