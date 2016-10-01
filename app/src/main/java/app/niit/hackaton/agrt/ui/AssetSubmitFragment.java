@@ -1,11 +1,17 @@
 package app.niit.hackaton.agrt.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,9 +47,12 @@ public class AssetSubmitFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private String provider;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private LocationManager locationManager;
+    private double latitude = 0, longitude = 0;
 
     private String mScanCode, mScanFormat;
     private View mRootView;
@@ -233,20 +242,15 @@ public class AssetSubmitFragment extends Fragment {
             }
         }
 
-        //TODO : Set actual lat, lng, date and location values
-        long lat = 0, lng = 0, date = 0;
-        // check if GPS enabled
-//                GPSTracker gpsTracker = new GPSTracker(getActivity());
-//
-//                if (gpsTracker.getIsGPSTrackingEnabled()) {
-//                    String lat = String.valueOf(gpsTracker.latitude);
-//                    String lng = String.valueOf(gpsTracker.latitude);
-//                }
+        //TODO : Set actual location name and date values
+        long date = 0;
+
+        getCurrentLocation();
         AssetRegister assetRegister = new AssetRegister();
-        assetRegister.setAsset(Util.getAssetByScanCodeAndType(mScanCodeET.getText().toString(), mScanFormatET.getText().toString()));
+        assetRegister.setAsset(Util.getAssetByScanCodeAndType(mScanCode, mScanFormat));
         assetRegister.setEmpName(mEmployeeNameET.getText().toString());
-        assetRegister.setLatitude(lat);
-        assetRegister.setLongitude(lng);
+        assetRegister.setLatitude(latitude);
+        assetRegister.setLongitude(longitude);
         assetRegister.setLocation("Bangalore");
         assetRegister.setRegisterDate(date);
         if (mInOutButton.isChecked())
@@ -254,13 +258,98 @@ public class AssetSubmitFragment extends Fragment {
         else
             assetRegister.setStatus(Status.OUT);
 
-        long assetRegisteryRow = AgtrApplication.getDbHelper().saveAssetRegister(assetRegister);
-        if (assetRegisteryRow != -1) {
-            Toast.makeText(this.getContext(), "Asset registry saved successfully", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this.getContext(), "Asset registry save failed", Toast.LENGTH_SHORT).show();
+        //Stay on the same screen if the lat, lng are not available and let the user enable location settings
+        if (latitude != 0 || longitude != 0.0) {
+            long assetRegisteryRow = AgtrApplication.getDbHelper().saveAssetRegister(assetRegister);
+            if (assetRegisteryRow != -1) {
+                Toast.makeText(this.getContext(), "Asset registry saved successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this.getContext(), "Asset registry save failed", Toast.LENGTH_SHORT).show();
+            }
+            startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
+            getActivity().finish();
         }
-        startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
-        getActivity().finish();
+    }
+
+    /**
+     * Gets the current location ,shows an alert if no location provider available
+     */
+    private void getCurrentLocation() {
+        showProviderAlert();
+        // Creating a criteria object to retrieve provider
+        Criteria criteria = new Criteria();
+        //Getting the name of best provider
+        provider = locationManager.getBestProvider(criteria, true);
+        // Getting Current Location
+        try {
+            Location location = locationManager.getLastKnownLocation(provider);
+            //Use NETWORK_PROVIDER, if GPS is not working
+            if (location == null)
+                location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            //Update location if not null
+            if (location != null) {
+                onLocationChanged(location);
+            }
+        } catch (SecurityException e) {
+
+        }
+    }
+
+    public void onLocationChanged(Location location) {
+        // Get latitude of the current location
+        latitude = location.getLatitude();
+
+        // Get longitude of the current location
+        longitude = location.getLongitude();
+    }
+
+    /**
+     * Checks for the available location providers and shows an alert to enable the provider, if no provider found
+     */
+    private void showProviderAlert() {
+        boolean gps_enabled = false;
+        boolean network_enabled = false;
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        try {
+            gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch (Exception e) {
+        }
+
+        try {
+            network_enabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch (Exception e) {
+        }
+
+        if (!gps_enabled && !network_enabled) {
+            // notify user
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+
+            //Setting Dialog Title
+            alertDialog.setTitle(R.string.GPSAlertDialogTitle);
+
+            //Setting Dialog Message
+            alertDialog.setMessage(R.string.GPSAlertDialogMessage);
+
+            //On Pressing Setting button
+            alertDialog.setPositiveButton(R.string.action_settings, new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    getActivity().startActivity(intent);
+                }
+            });
+
+            //On pressing cancel button
+            alertDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            alertDialog.show();
+        }
     }
 }

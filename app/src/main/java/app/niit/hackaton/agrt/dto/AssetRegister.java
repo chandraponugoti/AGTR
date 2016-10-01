@@ -10,8 +10,8 @@ public class AssetRegister {
     private Status status = Status.IN;
     private Long registerDate;
     private String empName = "";
-    private Long latitude;
-    private Long logitude;
+    private double latitude;
+    private double logitude;
 
     private String location;
 
@@ -55,19 +55,19 @@ public class AssetRegister {
         this.empName = empName;
     }
 
-    public Long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLogitude() {
+    public double getLogitude() {
         return logitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(double longitude) {
         this.logitude = longitude;
     }
 
