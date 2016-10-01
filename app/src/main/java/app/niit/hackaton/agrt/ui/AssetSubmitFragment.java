@@ -148,10 +148,10 @@ public class AssetSubmitFragment extends Fragment {
         mScanFormatET.setText(mScanFormat);
         try {
             ArrayAdapter adapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_item, Util.getOrganisationList());
-            /** Setting the adapter to the ListView */
             mOrganisation.setAdapter(adapter);
         } catch (Exception e) {
             // Handle the exception in case no orgainisation is created by the user
+            Toast.makeText(getActivity(), "Create Organisation First!", Toast.LENGTH_SHORT);
         }
     }
 
