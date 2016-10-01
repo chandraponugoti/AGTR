@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.NFC" />
 
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
     <application
         android:name=".AgtrApplication"
         android:allowBackup="true"
@@ -24,8 +28,13 @@
         </activity>
         <activity
             android:name="app.niit.hackaton.agrt.ui.DashboardActivity"
-            android:screenOrientation="sensor" />
-        <activity android:name="app.niit.hackaton.agrt.ui.AssetSubmitActivity" />
+            android:screenOrientation="sensor"></activity>
+        <activity android:name="app.niit.hackaton.agrt.ui.AssetSubmitActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name="app.niit.hackaton.agrt.ui.OrganisationSubmitActivity" />
         <activity
             android:name="app.niit.hackaton.agrt.ui.LatestUpdatesActivity"

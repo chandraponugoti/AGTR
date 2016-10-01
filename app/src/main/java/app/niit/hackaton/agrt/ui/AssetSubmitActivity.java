@@ -15,10 +15,8 @@ public class AssetSubmitActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
         Bundle extras = getIntent().getExtras();
-
-        mFragment= new AssetSubmitFragment();
+        mFragment = new AssetSubmitFragment();
         mFragment.setArguments(extras);
-
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFragment).commit();
     }
 }

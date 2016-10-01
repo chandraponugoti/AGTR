@@ -17,7 +17,6 @@ public class DashboardActivity extends FragmentActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
-
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new DashboardFragment()).commit();
     }
 
@@ -26,25 +25,17 @@ public class DashboardActivity extends FragmentActivity {
         if (scanningResult != null) {
             String scanFormat = scanningResult.getFormatName();
             String scanContent = scanningResult.getContents();
-
-
-            Toast toast = Toast.makeText(
-                    this,
-                    scanFormat,Toast.LENGTH_SHORT
-            );
-
+            Toast toast = Toast.makeText(this, scanFormat, Toast.LENGTH_SHORT);
             toast.show();
-
             Intent submitIntent = new Intent(this.getApplicationContext(),AssetSubmitActivity.class);
             submitIntent.putExtra(Constants.SCAN_CODE,scanContent);
             submitIntent.putExtra(Constants.SCAN_FORMAT,scanFormat);
             startActivity(submitIntent);
         } else {
-            Toast toast = Toast.makeText(
-                    this,
-                    "No scan data received!",Toast.LENGTH_SHORT
-            );
+            Toast toast = Toast.makeText(this, "No scan data received!", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
+
+
 }

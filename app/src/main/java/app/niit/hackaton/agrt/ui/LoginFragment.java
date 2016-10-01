@@ -55,5 +55,7 @@ public class LoginFragment extends Fragment {
             startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
             getActivity().finish();
         }
+        startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
+        getActivity().finish();
     }
 }

@@ -9,24 +9,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import app.niit.hackaton.agrt.R;
 
 
 public class DashboardFragment extends Fragment {
 
+    private static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     private Button mLatestUpdates;
     private Button mAssetNfcScan;
     private Button mAssetQrAndBarcodeScan;
     private Button mCreateRole;
     private Button mCreateOrginisation;
     private Button mCreateProfile;
-    private static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -101,7 +98,6 @@ public class DashboardFragment extends Fragment {
 
     private void doShowLatestUpdates() {
         startActivity(new Intent(getActivity().getApplicationContext(),LatestUpdatesActivity.class));
-        getActivity().finish();
     }
 
     private void doRegisterAssetThroughNfc() {
@@ -148,8 +144,5 @@ public class DashboardFragment extends Fragment {
             //on catch, show the download dialog
         }
     }
-
-
-
 
 }

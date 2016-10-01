@@ -3,6 +3,8 @@ package app.niit.hackaton.agrt.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -86,10 +88,29 @@ public class AssetSubmitFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
+        if (nfcAdapter == null) {
+            Toast.makeText(getActivity(), "NFC NOT supported on this devices!", Toast.LENGTH_LONG).show();
+            getActivity().finish();
+        } else if (!nfcAdapter.isEnabled()) {
+            Toast.makeText(getActivity(), "NFC NOT Enabled!", Toast.LENGTH_LONG).show();
+            getActivity().finish();
+        }
         Bundle bundle = getArguments();
         if (null != bundle) {
-            mScanCode = bundle.getString(Constants.SCAN_CODE);
-            mScanFormat = bundle.getString(Constants.SCAN_FORMAT);
+            if (bundle.getString(Constants.SCAN_CODE) == null && bundle.getString(Constants.SCAN_FORMAT) == null) {
+                Tag tag = bundle.getParcelable(NfcAdapter.EXTRA_TAG);
+                byte[] tagId = tag.getId();
+                String tagCode = "";
+                for (int i = 0; i < tagId.length; i++) {
+                    tagCode += Integer.toHexString(tagId[i] & 0xFF) + " ";
+                }
+                mScanCode = tagCode;
+                mScanFormat = "NFC_TAG";
+            } else {
+                mScanCode = bundle.getString(Constants.SCAN_CODE);
+                mScanFormat = bundle.getString(Constants.SCAN_FORMAT);
+            }
         }
 
         // Inflate the layout for this fragment
