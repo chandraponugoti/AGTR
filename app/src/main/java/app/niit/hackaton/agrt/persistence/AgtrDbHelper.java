@@ -392,4 +392,17 @@ public class AgtrDbHelper extends SQLiteOpenHelper {
         cursor.close();
         return user;
     }
+
+    public Boolean isOrganisationCreated() {
+        final SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor;
+        cursor = db.rawQuery(
+                OrganizationTable.SELECT_ALL, null
+        );
+        if (0 < cursor.getCount()) {
+            return true;
+        }
+        cursor.close();
+        return false;
+    }
 }

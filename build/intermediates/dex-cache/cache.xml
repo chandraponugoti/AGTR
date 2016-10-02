@@ -3,20 +3,11 @@
 
     <item
         is-multidex="true"
-        jar="D:\hackathon\AGTR\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_1b1271b55deba974934194f47cc5d626b624b018\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\hackathon\AGTR\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="ccc895e603c254611d50e834a3ba31bbf476fdda">
+        sha1="e3acf2032faad39477b5a03097e725b692945783">
         <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_fd00bd6721725e73d358b8972d3a4eb8db584c64\classes.dex" />
     </item>
     <item
@@ -39,6 +30,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\hackathon\AGTR\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_7e4d3eca37e957f07b571aadd531dbcfbec6dcd2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\hackathon\AGTR\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_1b1271b55deba974934194f47cc5d626b624b018\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="D:\hackathon\AGTR\app\build\intermediates\exploded-aar\com.embarkmobile\zxing-android-integration\2.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -52,35 +61,8 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="8b334c56ca721a4541bd3d6f1fba60e35a7b2939">
+        sha1="bbf8b10e3bacb2f71df4f10cdfa1c130abfda465">
         <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_1daa40878c9d17c5ee5b52a35c48499ffb9e6b82\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\hackathon\AGTR\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_3a3a07797107098a6cf56cdc25bfa3f5adcb2ed5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\hackathon\AGTR\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_7e4d3eca37e957f07b571aadd531dbcfbec6dcd2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Users\ChandraSekharPonugot\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.0.1\9ebf6cd580d67601fbf88fd007aab4703b19e4c2\core-3.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="9ebf6cd580d67601fbf88fd007aab4703b19e4c2">
-        <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\core-3.0.1_ff41ec9f7f5bb118ddd0a178016f06e81f7bbe22\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -93,12 +75,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\hackathon\AGTR\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_3a3a07797107098a6cf56cdc25bfa3f5adcb2ed5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="D:\Users\ChandraSekharPonugot\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
         <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_daff49f7ff82f83e6d0afb313a39df60afb90439\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\ChandraSekharPonugot\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.0.1\9ebf6cd580d67601fbf88fd007aab4703b19e4c2\core-3.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9ebf6cd580d67601fbf88fd007aab4703b19e4c2">
+        <dex dex="D:\hackathon\AGTR\app\build\intermediates\transforms\dex\debug\folders\1000\10\core-3.0.1_ff41ec9f7f5bb118ddd0a178016f06e81f7bbe22\classes.dex" />
     </item>
 
 </items>
