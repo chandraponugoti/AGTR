@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 
 import app.niit.hackaton.agrt.R;
+import app.niit.hackaton.agrt.util.Util;
 
 
 public class DashboardFragment extends Fragment {
@@ -97,20 +99,36 @@ public class DashboardFragment extends Fragment {
     }
 
     private void doShowLatestUpdates() {
-        startActivity(new Intent(getActivity().getApplicationContext(),LatestUpdatesActivity.class));
+        if (Util.isOrganisationCreated()) {
+            startActivity(new Intent(getActivity().getApplicationContext(), LatestUpdatesActivity.class));
+        } else {
+            Toast.makeText(getActivity(), "Create Organisation", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void doRegisterAssetThroughNfc() {
-        startActivity(new Intent(getActivity().getApplicationContext(),AssetSubmitActivity.class));
+        if (Util.isOrganisationCreated()) {
+            startActivity(new Intent(getActivity().getApplicationContext(), AssetSubmitActivity.class));
+        } else {
+            Toast.makeText(getActivity(), "Create Organisation", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void doRegisterAssetThroughBarcode() {
-        IntentIntegrator scanIntegrator = new IntentIntegrator(getActivity());
-        scanIntegrator.initiateScan();
+        if (Util.isOrganisationCreated()) {
+            IntentIntegrator scanIntegrator = new IntentIntegrator(getActivity());
+            scanIntegrator.initiateScan();
+        } else {
+            Toast.makeText(getActivity(), "Create Organisation", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void doCreateRole() {
-        startActivity(new Intent(getActivity().getApplicationContext(), RoleActivity.class));
+        if (Util.isOrganisationCreated()) {
+            startActivity(new Intent(getActivity().getApplicationContext(), RoleActivity.class));
+        } else {
+            Toast.makeText(getActivity(), "Create Organisation", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void doCreateOrganisation() {
@@ -118,7 +136,11 @@ public class DashboardFragment extends Fragment {
     }
 
     private void doCreateProfile() {
-        startActivity(new Intent(getActivity().getApplicationContext(), CreateProfileActivity.class));
+        if (Util.isOrganisationCreated()) {
+            startActivity(new Intent(getActivity().getApplicationContext(), CreateProfileActivity.class));
+        } else {
+            Toast.makeText(getActivity(), "Create Organisation", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //product barcode mode

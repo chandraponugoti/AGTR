@@ -129,13 +129,15 @@ public class AssetSubmitFragment extends Fragment {
                     getActivity().finish();
                 }
                 Tag tag = bundle.getParcelable(NfcAdapter.EXTRA_TAG);
-                byte[] tagId = tag.getId();
-                String tagCode = "";
-                for (int i = 0; i < tagId.length; i++) {
-                    tagCode += Integer.toHexString(tagId[i] & 0xFF) + " ";
+                if (tag != null) {
+                    byte[] tagId = tag.getId();
+                    String tagCode = "";
+                    for (int i = 0; i < tagId.length; i++) {
+                        tagCode += Integer.toHexString(tagId[i] & 0xFF) + " ";
+                    }
+                    mScanCode = tagCode;
+                    mScanFormat = "NFC_TAG";
                 }
-                mScanCode = tagCode;
-                mScanFormat = "NFC_TAG";
             } else {
                 mScanCode = bundle.getString(Constants.SCAN_CODE);
                 mScanFormat = bundle.getString(Constants.SCAN_FORMAT);

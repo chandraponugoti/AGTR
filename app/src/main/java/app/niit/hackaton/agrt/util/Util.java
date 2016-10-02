@@ -54,4 +54,8 @@ public class Util {
     public static User getUserProfileByUserNameAndPassword(String username, String password) {
         return AgtrApplication.getDbHelper().getUserProfileByUserNameAndPassword(username, password);
     }
+
+    public static Boolean isOrganisationCreated() {
+        return AgtrApplication.getDbHelper().isOrganisationCreated();
+    }
 }
