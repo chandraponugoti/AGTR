@@ -71,7 +71,7 @@ public class AssetRegisteryTable {
         final String id = AgtrDbHelper.getString(cursor, ID, "");
         final Long assetId = AgtrDbHelper.getLong(cursor, ASSET_ID, 0);
         final int status = AgtrDbHelper.getInt(cursor, STATUS);
-        final long registerDate = AgtrDbHelper.getLong(cursor, REGISTER_DATE, 0);
+        final String registerDate = AgtrDbHelper.getString(cursor, REGISTER_DATE, "");
         final String empName = AgtrDbHelper.getString(cursor, EMPLOYEE_NAME, "");
         final long longitude = AgtrDbHelper.getLong(cursor, LATITUDE, 0);
         final long latitude = AgtrDbHelper.getLong(cursor, LONGITUDE, 0);

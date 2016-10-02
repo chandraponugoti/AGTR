@@ -8,11 +8,10 @@ public class AssetRegister {
     private Long id;
     private Asset asset = null;
     private Status status = Status.IN;
-    private Long registerDate;
+    private String registerDate;
     private String empName = "";
     private double latitude;
     private double logitude;
-
     private String location;
 
     public Long getId() {
@@ -39,11 +38,11 @@ public class AssetRegister {
         this.status = status;
     }
 
-    public Long getRegisterDate() {
+    public String getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(Long registerDate) {
+    public void setRegisterDate(String registerDate) {
         this.registerDate = registerDate;
     }
 

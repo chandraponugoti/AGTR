@@ -26,6 +26,8 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -89,6 +91,17 @@ public class AssetSubmitFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    /**
+     * Getting Device current date and time
+     *
+     * @return returning device current time
+     */
+    public static String getCurrentDateTime() {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
+        long milliSeconds = System.currentTimeMillis();
+        return dateFormatter.format(new Date(milliSeconds));
     }
 
     @Override
@@ -278,9 +291,6 @@ public class AssetSubmitFragment extends Fragment {
             }
         }
 
-        //TODO : Set actual location name and date values
-        long date = 0;
-
         getCurrentLocation();
         //Stay on the same screen if the lat, lng are not available and let the user enable location settings
         if (latitude != 0 || longitude != 0.0) {
@@ -290,7 +300,7 @@ public class AssetSubmitFragment extends Fragment {
             assetRegister.setLatitude(latitude);
             assetRegister.setLongitude(longitude);
             assetRegister.setLocation(getLocationName());
-            assetRegister.setRegisterDate(date);
+            assetRegister.setRegisterDate(getCurrentDateTime());
             if (mInOutButton.isChecked())
                 assetRegister.setStatus(Status.IN);
             else
