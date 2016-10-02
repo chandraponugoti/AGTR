@@ -75,14 +75,14 @@ public class SessionManager {
     /**
      * Get stored session data
      */
-    public HashMap<String, String> getUserDetails() {
-        HashMap<String, String> user = new HashMap<String, String>();
+    public HashMap<String, Object> getUserDetails() {
+        HashMap<String, Object> user = new HashMap<String, Object>();
         // user name
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
 
-        user.put(KEY_ORG, pref.getString(KEY_ORG, null));
+        user.put(KEY_ORG, pref.getLong(KEY_ORG, 0L));
 
-        user.put(KEY_ADMIN, pref.getString(KEY_ADMIN, null));
+        user.put(KEY_ADMIN, pref.getBoolean(KEY_ADMIN, Boolean.FALSE));
 
         // return user
         return user;

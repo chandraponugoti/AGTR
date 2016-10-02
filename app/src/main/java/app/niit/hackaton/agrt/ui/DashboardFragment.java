@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,18 +17,29 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 import app.niit.hackaton.agrt.R;
+import app.niit.hackaton.agrt.base.SessionManager;
 import app.niit.hackaton.agrt.util.Util;
 
 
 public class DashboardFragment extends Fragment {
-
     private static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
+    // Session Manager Class
+    SessionManager session;
     private Button mLatestUpdates;
     private Button mAssetNfcScan;
     private Button mAssetQrAndBarcodeScan;
     private Button mCreateRole;
     private Button mCreateOrginisation;
     private Button mCreateProfile;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Session class instance
+        session = new SessionManager(getActivity().getApplicationContext());
+        session.checkLogin();
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +50,11 @@ public class DashboardFragment extends Fragment {
         mCreateRole = (Button)rootView.findViewById(R.id.btn_role);
         mCreateOrginisation = (Button)rootView.findViewById(R.id.btn_organisations);
         mCreateProfile = (Button)rootView.findViewById(R.id.btn_profile);
+        if (!(boolean) session.getUserDetails().get(SessionManager.KEY_ADMIN)) {
+            mCreateRole.setVisibility(View.GONE);
+            mCreateOrginisation.setVisibility(View.GONE);
+            mCreateProfile.setVisibility(View.GONE);
+        }
         return rootView;
     }
 
@@ -141,6 +160,21 @@ public class DashboardFragment extends Fragment {
         } else {
             Toast.makeText(getActivity(), "Create Organisation", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            session.logoutUser();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //product barcode mode

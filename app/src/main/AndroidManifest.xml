@@ -18,7 +18,7 @@
         android:icon="@mipmap/asset_geo_tag"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@android:style/Theme.Holo.Light">
         <activity
             android:name="app.niit.hackaton.agrt.ui.LoginActivity"
             android:screenOrientation="sensor">
@@ -38,16 +38,9 @@
             </intent-filter>
         </activity>
         <activity android:name="app.niit.hackaton.agrt.ui.OrganisationSubmitActivity" />
-        <activity
-            android:name="app.niit.hackaton.agrt.ui.LatestUpdatesActivity"
-            android:label="@string/title_activity_latest_updates" />
-        <activity
-            android:name="app.niit.hackaton.agrt.ui.CreateProfileActivity"
-            android:label="@string/title_activity_create_profile" />
-        <activity
-            android:name="app.niit.hackaton.agrt.ui.RoleActivity"
-            android:label="@string/title_activity_role"></activity>
-
+        <activity android:name="app.niit.hackaton.agrt.ui.LatestUpdatesActivity" />
+        <activity android:name="app.niit.hackaton.agrt.ui.CreateProfileActivity" />
+        <activity android:name="app.niit.hackaton.agrt.ui.RoleActivity" />
         <provider
             android:name="app.niit.hackaton.agrt.provider.AgtrProvider"
             android:authorities="hack.agtr.provider"

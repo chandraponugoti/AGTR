@@ -67,6 +67,8 @@ public class CustomAdapter extends BaseAdapter {
                 str.append("ASSET OWNER:" + item.getAsset().getAssetOwner());
                 str.append(System.getProperty("line.separator"));
                 str.append("TAGGED LOCATION:" + item.getLocation());
+                str.append(System.getProperty("line.separator"));
+                str.append("TAGGED DATE:" + item.getRegisterDate());
                 // Setting Dialog Message
                 alertDialog.setMessage(str);
                 // Setting Icon to Dialog

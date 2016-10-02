@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import app.niit.hackaton.agrt.AgtrApplication;
 import app.niit.hackaton.agrt.R;
+import app.niit.hackaton.agrt.base.SessionManager;
 import app.niit.hackaton.agrt.dto.Organisation;
 import app.niit.hackaton.agrt.dto.Role;
 import app.niit.hackaton.agrt.dto.User;
@@ -36,10 +38,14 @@ import app.niit.hackaton.agrt.util.Util;
  * create an instance of this fragment.
  */
 public class CreateProfileFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    // Session Manager Class
+    SessionManager session;
     ArrayAdapter organisationAdapter;
     ArrayAdapter roleAdapter;
     Button mSubmitProfile;
@@ -82,6 +88,7 @@ public class CreateProfileFragment extends Fragment implements AdapterView.OnIte
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -91,6 +98,9 @@ public class CreateProfileFragment extends Fragment implements AdapterView.OnIte
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Session class instance
+        session = new SessionManager(getActivity().getApplicationContext());
+        session.checkLogin();
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_create_profile, container, false);
         mFirstName = (EditText) rootView.findViewById(R.id.First_Name);
@@ -108,11 +118,6 @@ public class CreateProfileFragment extends Fragment implements AdapterView.OnIte
         mUserOrganisation.setOnItemSelectedListener(this);
         mSubmitProfile.setOnClickListener(this);
         return rootView;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_create_profile,menu);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -177,6 +182,22 @@ public class CreateProfileFragment extends Fragment implements AdapterView.OnIte
         }
         startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
         getActivity().finish();
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            session.logoutUser();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     /**
      * This interface must be implemented by activities that contain this

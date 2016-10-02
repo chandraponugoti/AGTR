@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import app.niit.hackaton.agrt.R;
+import app.niit.hackaton.agrt.base.SessionManager;
 import app.niit.hackaton.agrt.dto.User;
 import app.niit.hackaton.agrt.util.Util;
 
@@ -19,6 +21,9 @@ public class LoginFragment extends Fragment {
     Button mLoginButton;
     EditText mAccountname;
     EditText mPassword;
+
+    // Session Manager Class
+    SessionManager session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,17 +50,26 @@ public class LoginFragment extends Fragment {
     }
 
     private void doLogin() {
+        // Session Manager
+        session = new SessionManager(getActivity().getApplicationContext());
         String username = mAccountname.getText().toString();
         String password = mPassword.getText().toString();
         User user = Util.getUserProfileByUserNameAndPassword(username, password);
         if (user != null) {
+            boolean flag = false;
+            if (user.getRole().getRoleName().equals("Admin")) {
+                flag = true;
+            }
+            session.createLoginSession(username, user.getOrg().getId(), flag);
             startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
             getActivity().finish();
         } else if (username.equals("admin") && password.equals("admin")) {
+            Toast.makeText(getActivity(), "Your are logging as App Admin", Toast.LENGTH_SHORT).show();
+            session.createLoginSession(username, 0L, true);
             startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
             getActivity().finish();
+        } else {
+            Toast.makeText(getActivity(), "Login Failed", Toast.LENGTH_SHORT).show();
         }
-        startActivity(new Intent(getActivity().getApplicationContext(), DashboardActivity.class));
-        getActivity().finish();
     }
 }

@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -14,6 +17,7 @@ import java.util.List;
 
 import app.niit.hackaton.agrt.R;
 import app.niit.hackaton.agrt.adapter.CustomAdapter;
+import app.niit.hackaton.agrt.base.SessionManager;
 import app.niit.hackaton.agrt.dto.Asset;
 import app.niit.hackaton.agrt.dto.AssetRegister;
 import app.niit.hackaton.agrt.util.Util;
@@ -28,11 +32,12 @@ import app.niit.hackaton.agrt.util.Util;
  * create an instance of this fragment.
  */
 public class LatestUpdatesFragment extends Fragment {
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    // Session Manager Class
+    SessionManager session;
     ListView mAssetView;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,6 +70,10 @@ public class LatestUpdatesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Session class instance
+        session = new SessionManager(getActivity().getApplicationContext());
+        session.checkLogin();
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -133,6 +142,21 @@ public class LatestUpdatesFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         //mListener = null;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            session.logoutUser();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

@@ -13,6 +13,7 @@ import app.niit.hackaton.agrt.R;
 import app.niit.hackaton.agrt.util.Constants;
 
 public class DashboardActivity extends FragmentActivity {
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -6,6 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 
 import app.niit.hackaton.agrt.AgtrApplication;
 import app.niit.hackaton.agrt.R;
+import app.niit.hackaton.agrt.base.SessionManager;
 import app.niit.hackaton.agrt.dto.Organisation;
 import app.niit.hackaton.agrt.dto.Role;
 import app.niit.hackaton.agrt.util.Util;
@@ -31,10 +35,13 @@ import app.niit.hackaton.agrt.util.Util;
  * create an instance of this fragment.
  */
 public class OrganisationSubmitFragment extends Fragment implements View.OnClickListener {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    // Session Manager Class
+    SessionManager session;
     /**
      * Declaring an ArrayAdapter to set items to ListView
      */
@@ -76,6 +83,10 @@ public class OrganisationSubmitFragment extends Fragment implements View.OnClick
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Session class instance
+        session = new SessionManager(getActivity().getApplicationContext());
+        session.checkLogin();
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -179,6 +190,21 @@ public class OrganisationSubmitFragment extends Fragment implements View.OnClick
         }else if(v == mIsParent){
             onCheckboxClicked(v);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            session.logoutUser();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
