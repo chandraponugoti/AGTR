@@ -92,7 +92,18 @@ public class LatestUpdatesFragment extends Fragment {
 
     public List<AssetRegister> getAssets() {
         if (Util.getAssetRegistryList() != null && !Util.getAssetRegistryList().isEmpty()) {
-            return Util.getAssetRegistryList();
+            ArrayList<AssetRegister> orgAssetList = new ArrayList<AssetRegister>();
+            Long orgId = (Long) session.getUserDetails().get(SessionManager.KEY_ORG);
+            if (orgId == 0) {
+                return Util.getAssetRegistryList();
+            } else {
+                for (AssetRegister asset : Util.getAssetRegistryList()) {
+                    if (asset.getAsset().getOrg().getId().equals(orgId)) {
+                        orgAssetList.add(asset);
+                    }
+                }
+                return orgAssetList;
+            }
         } else {
             List assets = new ArrayList();
             AssetRegister ar = new AssetRegister();
