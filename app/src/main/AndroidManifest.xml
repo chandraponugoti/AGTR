@@ -21,7 +21,7 @@
         android:theme="@android:style/Theme.Holo.Light">
         <activity
             android:name="app.niit.hackaton.agrt.ui.LoginActivity"
-            android:screenOrientation="sensor">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,17 +30,27 @@
         </activity>
         <activity
             android:name="app.niit.hackaton.agrt.ui.DashboardActivity"
-            android:screenOrientation="sensor"></activity>
-        <activity android:name="app.niit.hackaton.agrt.ui.AssetSubmitActivity">
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="app.niit.hackaton.agrt.ui.AssetSubmitActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="app.niit.hackaton.agrt.ui.OrganisationSubmitActivity" />
-        <activity android:name="app.niit.hackaton.agrt.ui.LatestUpdatesActivity" />
-        <activity android:name="app.niit.hackaton.agrt.ui.CreateProfileActivity" />
-        <activity android:name="app.niit.hackaton.agrt.ui.RoleActivity" />
+        <activity
+            android:name="app.niit.hackaton.agrt.ui.OrganisationSubmitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="app.niit.hackaton.agrt.ui.LatestUpdatesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="app.niit.hackaton.agrt.ui.CreateProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="app.niit.hackaton.agrt.ui.RoleActivity"
+            android:screenOrientation="portrait" />
         <provider
             android:name="app.niit.hackaton.agrt.provider.AgtrProvider"
             android:authorities="hack.agtr.provider"
